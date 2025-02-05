@@ -11,7 +11,7 @@ All of our code goes into the Robot Folder
 Inside of the robot folder, we have a few files, and two other folders- 
 
 ## Files not in Sub Folders
----
+
 Core robot Functions are handled by 
 - Main - Starts Everything Up
 - Robot - Handles each of the Match "Phases" IE; Prep, teleop, auto
@@ -27,6 +27,17 @@ Core robot Functions are handled by
 Where we break down the robot into its core "Parts" and "Mechanisms"
 A subsystem would be a Collection of MotorControllers, and classes that help to describe the code needed to make the Mechanisms work
 
+### Drive Subsystem
+
+Basically describes the "Swerve Drive Base"
+- We "Build" all four of the Swerve Modules
+    - We Tell the module what each CAN ID it needs
+    - The Angle it needs to Account for (Used while Turning)
+
+The Gyro Sensor (If Installed) - Checks to see how fast the robot is moving
+
+Swerve Odometry - Checks to see what the Swerve Modules are Currently; (Odometry means to estimate an objects position using data)
+- 
 
 ### Commands Folder
 
@@ -60,6 +71,18 @@ public class SwerveDriveKinematics - Helps usby taking the robots Velocity and d
     - Track Width / 2
 
 
+public class Rotation2D - Basically Helps the robot interpret the user inputs and donvert them into a 2D Direction
+    - User Input is often restricted to just values such as an axis that is between 1 and -1 
+    - This Takes two of those values and Does Calculus to tell the robot how many degrees it needs to turn
+    - Example: 
+    *please note - this Class handles the MATH portion of converting those two values into radians/Degrees - YOU still need to send those results to the robot*
+    *For Example: In the Simplified motor Control exercise you could feed user input in directly*
+    - exampleMotor.set(Axis[1])
+    *OR you could manipulate the input, and send a different value to the motor*
+    Modified_Value = Axis[1] / 2
+    examplemotor.set(Modified_Value)
+
+    For more Detailed info please see the Classitself
 
 
 

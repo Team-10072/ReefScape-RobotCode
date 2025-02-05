@@ -7,6 +7,7 @@ This is the place that we will keep track of all the things we need to accomplis
 
 ## General To Do
 
+- Configure Default Controller Configuration
 - Swerve Drive Code
 - Elevator Code
 - Intake Code
@@ -16,9 +17,16 @@ This is the place that we will keep track of all the things we need to accomplis
 
 ## Swerve Drive Code
 
-- Update CAN IDS in CONSTANTS
-- Implement Alignment/Calibration
-- 
+- Update CAN ID's in CONSTANTS
+- Implement Alignment/Calibration - Swerve Modules Should 
+    - Zero out Absolute Encoders
+    - Zero out relative Encoders
+    - Report Current Status --> Driver Station
+        - Not Calibrated
+        - Calibrating
+        - Completed
+
+
 
 ## Elevator Code
 

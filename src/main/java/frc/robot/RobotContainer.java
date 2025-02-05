@@ -1,7 +1,3 @@
-// This Code is in the Swerve Drive testing Branch Of the Github Repository - This is for Testing Purposes ONLY!!! 
-
-//DO NOT PUSH ANYTHING IN THIS REPOSITRY TO PRODUCTION!!!!
-
 
 package frc.robot;
 

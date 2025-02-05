@@ -1,6 +1,3 @@
-// This Code is in the Swerve Drive testing Branch Of the Github Repository - This is for Testing Purposes ONLY!!! 
-
-//DO NOT PUSH ANYTHING IN THIS REPOSITRY TO PRODUCTION!!!!
 
 package frc.robot;
 
@@ -23,7 +20,7 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
   public static final class DriveConstants {
-    
+
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;

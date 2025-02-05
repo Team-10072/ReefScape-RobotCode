@@ -1,6 +1,6 @@
 ﻿# ReefScape-RobotCode
 
-If you are Lost or unsure what to do next please Check out the - [To Do List](DOCS/To-Do.MD)
+If you are Lost or unsure what to do next please Check out the - [To Do List](DOCS/To-Do.md)
 
 If you are Confused about terminology or Phrases please se: [Key Terms](DOCS/KeyTerms_CheatSheet.md)
 

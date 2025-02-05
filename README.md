@@ -6,14 +6,14 @@ If you are Confused about terminology or Phrases please se: [Key Terms](KeyTerms
 
 
 # Start of the 2025 Robot Code
----
+
 
 The Primary Design Goal will include:
 
 - REV MAX Swerve Base
 - One Stage Rev NEO Motor Driven Elevator
 - Three Pronged "Trident" Intake With a focus on Algea
---------------------------------------------------------
+
 
 ## Our Targets are: 
 

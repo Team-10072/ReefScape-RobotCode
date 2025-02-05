@@ -1,11 +1,11 @@
 # Key terms Cheat Sheet
----
+
 
 This Is a place to store Key terms to refer back to later incase of any Confusion
 
 
 ## File Structure
----
+
 
 All of our code goes into the Robot Folder
 Inside of the robot folder, we have a few files, and two other folders- 
@@ -23,13 +23,13 @@ Core robot Functions are handled by
 - Configs - Where we Create our motor Controller Configs (Details explained later under REV Swerve)
 
 ### Subsystems Folder
----
+
 Where we break down the robot into its core "Parts" and "Mechanisms"
 A subsystem would be a Collection of MotorControllers, and classes that help to describe the code needed to make the Mechanisms work
 
 
 ### Commands Folder
----
+
 Where we put all of our instructions/Logic we want the robot to do.
 
 Examples: 

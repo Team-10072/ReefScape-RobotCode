@@ -1,5 +1,10 @@
 ﻿# ReefScape-RobotCode
 
+If you are Lost or unsure what to do next please Check out the 
+
+If you are Confused about terminology or Phrases please se: [Key Terms](KeyTerms_CheatSheet.md)
+
+
 # Start of the 2025 Robot Code
 ---
 

@@ -45,20 +45,32 @@ public final class Constants {
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
+   
+   
+    // Controller Ports - Assigning for Driver Station Use
+    public static final int FlightStick_Port = 0;
+    public static final int Controller_Port = 1;
+
     // SPARK MAX CAN ID
+    //Front
+    public static final int kFrontLeftDrivingCanId = 2;
+    public static final int kFrontLeftTurningCanId = 1;
 
-    public static final int kFrontLeftDrivingCanId = 11;
-    public static final int kRearLeftDrivingCanId = 13;
-    public static final int kFrontRightDrivingCanId = 15;
-    public static final int kRearRightDrivingCanId = 17;
+    public static final int kFrontRightDrivingCanId = 4;
+    public static final int kFrontRightTurningCanId = 3;
 
-    public static final int kFrontLeftTurningCanId = 10;
-    public static final int kRearLeftTurningCanId = 12;
-    public static final int kFrontRightTurningCanId = 14;
-    public static final int kRearRightTurningCanId = 16;
 
+    //Rear
+    public static final int kRearLeftDrivingCanId = 6;
+    public static final int kRearLeftTurningCanId = 5;
+    
+    public static final int kRearRightDrivingCanId = 8;
+    public static final int kRearRightTurningCanId = 7;
+
+    //Currently No Gyro installed
     public static final boolean kGyroReversed = false;
   }
+
 
   public static final class ModuleConstants {
     // The MAXSwerve module can be configured with one of three pinion gears: 12T,
@@ -78,7 +90,11 @@ public final class Constants {
   }
 
   public static final class OIConstants {
-    public static final int kDriverControllerPort = 0;
+    //public static final int kDriverControllerPort = 0;
+    public static final int FlightStick_Port = 0;
+    public static final int Controller_Port = 1;
+
+
     public static final double kDriveDeadband = 0.05;
   }
 
@@ -99,5 +115,14 @@ public final class Constants {
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
+  }
+
+
+  public static final class ElevatorConstants {
+    public static final int elevator_z_can = 10;
+   
+    //elevator max height of travel in inches
+    public static final int elevator_max_height = 10; 
+
   }
 }

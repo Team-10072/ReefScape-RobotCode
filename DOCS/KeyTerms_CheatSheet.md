@@ -53,6 +53,8 @@ Examples:
 
 ### REV Swerve Drive Module
 ---
+Also See the Rev Resources Web Page: https://docs.revrobotics.com/ion-build-system/motion/maxswerve/programming-maxswerve
+
 
 - [Name]Config - Settings that we can push to or change on the MotorController
     - This is a REV Library Class called SparkMaxConfig
@@ -84,7 +86,11 @@ public class Rotation2D - Basically Helps the robot interpret the user inputs an
 
     For more Detailed info please see the Classitself
 
-
+Quick Terms
+- Slew Rate - Limits the rate of change when Turning IE Slows it down. Lower values = Slower Turns
+- Magnitude Slew rate - Accleration; Forwards/Backwards
+- Rotational Slew Rate - Robot Chassis Turning
+-  
 
 
 

@@ -2,14 +2,15 @@
 
 If you are Lost or unsure what to do next please Check out the - [To Do List](DOCS/To-Do.md)
 
-If you are Confused about terminology or Phrases please se: [Key Terms](DOCS/KeyTerms_CheatSheet.md)
+If you are Confused about terminology or Phrases please see: [Key Terms](DOCS/KeyTerms_CheatSheet.md)
+
+Need a quick refrence for information specific to our bot? Go here: [Our Bot Cheat - Cheat Sheet](DOCS/Robot%20Cheat%20Sheet.md)
 
 Suggestions or Concerns? Feel Free to toss them in the [Suggestions/Concerns](DOCS/Suggestions_Concerns)
 
 
 
 # Start of the 2025 Robot Code
-
 
 The Primary Design Goal will include:
 

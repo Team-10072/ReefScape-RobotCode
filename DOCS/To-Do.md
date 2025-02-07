@@ -14,6 +14,20 @@ This is the place that we will keep track of all the things we need to accomplis
 - Autonomous
 
 
+## Driver Station updates
+
+- Current Calibration status for:
+    - Elevator
+    - Swerve
+    - Arm Extension
+    - Arm Angle
+    
+- Current position of
+    - Elevator
+    - Swerve
+    - Arm Extension
+    - Arm Angle
+
 ## Swerve Drive Code
 
 - Update CAN IDS in CONSTANTS

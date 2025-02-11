@@ -1,6 +1,4 @@
 # Key terms Cheat Sheet
-
-
 This Is a place to store Key terms to refer back to later incase of any Confusion
 
 

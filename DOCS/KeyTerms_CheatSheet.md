@@ -4,9 +4,8 @@ This Is a place to store Key terms to refer back to later incase of any Confusio
 
 ## File Structure
 
-
 All of our code goes into the Robot Folder
-Inside of the robot folder, we have a few files, and two other folders- 
+Inside of the robot folder, we have a few files, and two other folders
 
 ## Files not in Sub Folders
 
@@ -38,6 +37,7 @@ Swerve Odometry - Checks to see what the Swerve Modules are Currently; (Odometry
 - 
 
 ### Commands Folder
+<font size="4" color="rgb(60,153,0)"> *Sometimes this File is not used - in those instances commands are placed in the RobotContainer.java file instead* </font>
 
 Where we put all of our instructions/Logic we want the robot to do.
 
@@ -47,7 +47,6 @@ Examples:
 
 - When I Move Joystick_A Axis[1] - DO This -> |Move Robot Forward/Backwards|
 
--------------------------------------
 
 ### REV Swerve Drive Module
 ---

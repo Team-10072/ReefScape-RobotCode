@@ -32,13 +32,13 @@ A working Elevator with
 - Preset Desired positions
 - End Stop limitations preventing over/under shoot 
 - Encoder Positions readouts --Visible to the Driver Via the Driver Station
-    - A functioning intake Capable ofSelectively Rotating Forwards and backwards to interact with game pieces 
+    - A functioning intake Capable of selectively rotating Forwards and backwards to interact with game pieces 
     - A "loaded" Indicator --> Driver Station
 
 
 # Autonomous
   - From start postion  ---->  Reef Position [As indicated Via April Tags] 
-  - Self Alignment with target algea
+  - Self Alignment with target algae
   - Self Positioned Elevator [Height & Length] 
   - Intake Status ----> Driver Station
     

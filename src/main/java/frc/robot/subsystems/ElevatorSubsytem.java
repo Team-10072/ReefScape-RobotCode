@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import java.io.ObjectInputFilter.Config;
 import java.lang.module.Configuration;
+import java.security.PublicKey;
 
 import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
@@ -78,9 +79,13 @@ public class ElevatorSubsytem extends SubsystemBase{
 
 
     public void ElevatorSetPostion(Boolean Button1, Boolean Button2, Boolean Button3, Boolean Button4){
+        
+        double elevator_max_height = 0;
+        double desired_position = 0;
 
-        current_Height = Height_Encoder.getPosition();
-        double desired_position;
+
+
+        double  current_Height = Height_Encoder.getPosition();
 
 
         //These Values still Need to Be implemented

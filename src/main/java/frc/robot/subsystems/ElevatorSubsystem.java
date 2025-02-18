@@ -4,7 +4,7 @@ import com.revrobotics.AbsoluteEncoder;
 // import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-import edu.wpi.first.util.sendable.SendableRegistry;
+// import edu.wpi.first.util.sendable.SendableRegistry;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 

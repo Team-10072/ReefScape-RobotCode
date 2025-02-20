@@ -7,7 +7,7 @@ import com.revrobotics.spark.SparkMax;
 // import edu.wpi.first.util.sendable.SendableRegistry;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.MotorTempTooHigh;
 /**
  * This is the subsystem designed to operate the Elevator.
  * It is instanted by calling new ElevatorSubsystem();
@@ -30,6 +30,11 @@ public class ElevatorSubsystem extends SubsystemBase {
         double position = getElevatorPosition();
         // SendableRegistry.add(new Sendable(), "Elevator Motor");
         checkEndStop();
+        double motorTemp = theMotor.getMotorTemperature();
+        if (motorTemp >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+            theMotor.set(0);
+            throw new MotorTempTooHigh("Elevator Motor Temperature is too High!");
+        }
         if (position >= 0 || position <= 0) {
             theMotor.set(0);
         }
@@ -47,7 +52,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void checkEndStop() {
         if (!endstopTriggered) {
             theMotor.set(0);
-            // theMotor.
+            
         } else {
             // Kalm.
         }

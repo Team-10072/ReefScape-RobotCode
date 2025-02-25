@@ -23,7 +23,6 @@ public class ElevatorSubsystem extends SubsystemBase {
      * The main elevator motor's encoder
      */
     private AbsoluteEncoder absoluteEncoder = theMotor.getAbsoluteEncoder();
-    // private RelativeEncoder relativeEncoder = theMotor.getEncoder();
 
     /**
      * Used in zeroing the elevator motor

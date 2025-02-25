@@ -102,6 +102,6 @@ public final class Constants {
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
-    public static final double kAcceptableMotorTemp = 0; // Note: this is in Celsius
+    public static final double kAcceptableMotorTemp = 65; // Note: this is in Celsius
   }
 }

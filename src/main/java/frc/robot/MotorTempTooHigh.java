@@ -6,6 +6,9 @@ package frc.robot;
  * A custom runtime exception thrown whenever a motor's temperature gets too high
  */
 public class MotorTempTooHigh extends RuntimeException {
+    public MotorTempTooHigh() {
+        super("A Motor's Temperature Is Too High!");
+    }
     public MotorTempTooHigh(String errorMessage, Throwable err) {
         super(errorMessage, err);
     }

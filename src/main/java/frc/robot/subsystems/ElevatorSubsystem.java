@@ -48,6 +48,16 @@ public class ElevatorSubsystem extends SubsystemBase {
         theMotor.set(sp);
     }
     /**
+     * Sets the motor to go to a specific position (must be called in Periodic)
+     */
+    public void setTheMotorTo(double position) {
+        if (getElevatorPosition() < position) {
+            theMotor.set(0.25);
+        } else if (getElevatorPosition() > position) {
+            theMotor.set(-0.25);
+        }
+    }
+    /**
      * Checks the main elevator motor to see if it is in unacceptable ranges or if it is too warm.
      */
     public void checkElevatorMotor() {

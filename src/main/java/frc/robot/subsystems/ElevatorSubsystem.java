@@ -4,9 +4,10 @@ import com.revrobotics.AbsoluteEncoder;
 // import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.util.sendable.SendableRegistry;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.MotorTempTooHigh;
 /**
  * This is the subsystem designed to operate the Elevator.
@@ -51,10 +52,12 @@ public class ElevatorSubsystem extends SubsystemBase {
      * Sets the motor to go to a specific position (must be called in Periodic)
      */
     public void setTheMotorTo(double position) {
-        if (getElevatorPosition() < position) {
+        if ((getElevatorPosition() - position) <= 0.1) {
             theMotor.set(0.25);
-        } else if (getElevatorPosition() > position) {
+        } else if ((getElevatorPosition() - position) >= 0.1) {
             theMotor.set(-0.25);
+        } else {
+            theMotor.set(0);
         }
     }
     /**

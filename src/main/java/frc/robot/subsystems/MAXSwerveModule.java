@@ -16,6 +16,8 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Configs;
+import frc.robot.Constants;
+import frc.robot.MotorTempTooHigh;
 
 public class MAXSwerveModule {
   private final SparkMax m_drivingSpark;
@@ -79,7 +81,14 @@ public class MAXSwerveModule {
   public SwerveModulePosition getPosition() {
     // Apply chassis angular offset to the encoder position to get the position
     // relative to the chassis.
-    return new SwerveModulePosition(
+    
+    if (m_drivingSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp)
+      throw new MotorTempTooHigh("A Swerve Drive's Driving Motor's Temperature is too High!");
+    
+    if (m_turningSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp)
+      throw new MotorTempTooHigh("A Swerve Drive's Turning Motor's Temperature is too High!");
+    
+      return new SwerveModulePosition(
         m_drivingEncoder.getPosition(),
         new Rotation2d(m_turningEncoder.getPosition() - m_chassisAngularOffset));
   }

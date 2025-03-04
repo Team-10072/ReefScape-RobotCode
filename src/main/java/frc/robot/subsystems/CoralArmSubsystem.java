@@ -23,7 +23,7 @@ public class CoralArmSubsystem extends SubsystemBase {
             timeAtStartIntake = System.currentTimeMillis();
             isIntakeRunning = true;
             IntakeMotor.set(0.5);
-            IntakeMotor2.set(0.5);
+            IntakeMotor2.set(-0.5);
         } else {
             if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
                 IntakeMotor.set(0.0);

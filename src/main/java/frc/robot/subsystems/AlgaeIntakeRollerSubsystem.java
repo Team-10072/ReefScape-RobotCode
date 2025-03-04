@@ -1,0 +1,57 @@
+package frc.robot.subsystems;
+
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
+    private final SparkMax algaeIntakeMotor = new SparkMax(Constants.DriveConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
+    private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
+    private final SparkMax algaeArmMotor = new SparkMax(Constants.DriveConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
+    private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
+    private double timeAtStartIntake = 0.0;
+    private boolean isIntakeRunning = false;
+    private boolean isArmUp = false;
+    
+    public AlgaeIntakeRollerSubsystem() {
+        
+    }
+    public void rollIntake() {
+        if (!isIntakeRunning) {
+            timeAtStartIntake = System.currentTimeMillis();
+            isIntakeRunning = true;
+            algaeIntakeMotor.set(0.5);
+        } else {
+            if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
+                algaeIntakeMotor.set(0.0);
+                isIntakeRunning = false;
+            }
+        }
+    }
+    public void changeArmPosition() {
+        changeArmPosition(!isArmUp);
+    }
+    public void changeArmPosition(boolean armShouldGoUp) {
+        if (armShouldGoUp == isArmUp) {
+            return;
+        }
+        if (!armShouldGoUp) {
+            if (algaeArmEncoder.getPosition() < 20.0) {
+                algaeArmMotor.set(0.25);
+            } else {
+                algaeArmMotor.set(0.0);
+                isArmUp = false;
+            }
+        } else {
+            if (algaeArmEncoder.getPosition() > 0.0) {
+                algaeArmMotor.set(-0.25);
+            } else {
+                algaeArmMotor.set(0.0);
+                isArmUp = true;
+            }
+        }
+    }
+}

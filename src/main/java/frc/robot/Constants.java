@@ -57,6 +57,12 @@ public final class Constants {
     public static final int kFrontRightTurningCanId = 3;
     public static final int kRearRightTurningCanId = 7;
 
+    public static final int kElevatorMotorCanId = 0;
+    public static final int kArmMotorCanId = 0;
+
+    public static final int kAlgaeIntakeMotorCanId = 0;
+    public static final int kAlgaeArmMotorCanId = 0;
+
     public static final boolean kGyroReversed = false;
   }
 
@@ -99,5 +105,6 @@ public final class Constants {
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
+    public static final double kAcceptableMotorTemp = 65; // Note: this is in Celsius
   }
 }

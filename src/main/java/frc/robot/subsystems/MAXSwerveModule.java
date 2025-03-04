@@ -82,12 +82,14 @@ public class MAXSwerveModule {
     // Apply chassis angular offset to the encoder position to get the position
     // relative to the chassis.
     
-    if (m_drivingSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp)
+    if (m_drivingSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+      m_drivingSpark.set(0.0);
       throw new MotorTempTooHigh("A Swerve Drive's Driving Motor's Temperature is too High!");
-    
-    if (m_turningSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp)
+    }
+    if (m_turningSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+      m_turningSpark.set(0.0);
       throw new MotorTempTooHigh("A Swerve Drive's Turning Motor's Temperature is too High!");
-    
+    }
       return new SwerveModulePosition(
         m_drivingEncoder.getPosition(),
         new Rotation2d(m_turningEncoder.getPosition() - m_chassisAngularOffset));

@@ -59,11 +59,15 @@ public final class Constants {
 
     public static final int kElevatorMotorCanId = 0;
     public static final int kArmMotorCanId = 0;
+    public static final int kIntakeMotorCanId = 0;
 
     public static final int kAlgaeIntakeMotorCanId = 0;
     public static final int kAlgaeArmMotorCanId = 0;
 
     public static final boolean kGyroReversed = false;
+
+    public static final double kCoralArmMaxMotorAngle = 20.0;
+    public static final double kAlgaeArmMaxMotorAngle = 20.0;
   }
 
   public static final class ModuleConstants {

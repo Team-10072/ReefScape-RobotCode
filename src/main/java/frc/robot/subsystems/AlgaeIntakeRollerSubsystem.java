@@ -1,15 +1,16 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.AbsoluteEncoder;
+// import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.MotorTempTooHigh;
 
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     private final SparkMax algaeIntakeMotor = new SparkMax(Constants.DriveConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
-    private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
+    // private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
     private final SparkMax algaeArmMotor = new SparkMax(Constants.DriveConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
     private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
     private double timeAtStartIntake = 0.0;
@@ -31,6 +32,16 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             }
         }
     }
+    public void checkOnMotors() {
+        if (algaeIntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+            algaeIntakeMotor.set(0.0);
+            throw new MotorTempTooHigh("The Algae Roller Intake Motor is too hot!");
+        }
+        if (algaeArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+            algaeArmMotor.set(0.0);
+            throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
+        }
+    }
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
@@ -39,7 +50,7 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             return;
         }
         if (!armShouldGoUp) {
-            if (algaeArmEncoder.getPosition() < 20.0) {
+            if (algaeArmEncoder.getPosition() < Constants.DriveConstants.kAlgaeArmMaxMotorAngle) {
                 algaeArmMotor.set(0.25);
             } else {
                 algaeArmMotor.set(0.0);

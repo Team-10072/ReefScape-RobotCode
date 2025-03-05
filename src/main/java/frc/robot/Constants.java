@@ -58,6 +58,7 @@ public final class Constants {
     public static final int kRearRightTurningCanId = 7;
 
     public static final int kElevatorMotorCanId = 0;
+
     public static final int kArmMotorCanId = 0;
     public static final int kIntakeMotorCanId = 0;
     public static final int kIntakeMotor2CanId = 0;
@@ -69,7 +70,10 @@ public final class Constants {
     public static final boolean kGyroReversed = false;
 
     public static final double kCoralArmMaxMotorAngle = 20.0;
+    public static final double kCoralTwistMaxMotorAngle = 20.0;
     public static final double kAlgaeArmMaxMotorAngle = 20.0;
+
+    public static final boolean kDriveRelativeToField = false;
   }
 
   public static final class ModuleConstants {

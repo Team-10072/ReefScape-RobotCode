@@ -1,9 +1,12 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.SparkClosedLoopController;
 // import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+// import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.util.sendable.SendableRegistry;
@@ -24,12 +27,15 @@ public class ElevatorSubsystem extends SubsystemBase {
      * The main elevator motor's encoder
      */
     private AbsoluteEncoder absoluteEncoder = theMotor.getAbsoluteEncoder();
-
+    /**
+     * The main elevator motor's closed loop controller
+     */
+    private final SparkClosedLoopController theMotorClosedLoopController = theMotor.getClosedLoopController();
+    // private final SparkMaxConfig theMotorConfig = new SparkMaxConfig();
     /**
      * Used in zeroing the elevator motor
      */
     private double zerodPos = 0.0;
-
     /**
      * Says if the endstop of the elevator motor has been triggered (hardware or software)
      */
@@ -52,6 +58,9 @@ public class ElevatorSubsystem extends SubsystemBase {
      * Sets the motor to go to a specific position (must be called in Periodic)
      */
     public void setTheMotorTo(double position) {
+        theMotorClosedLoopController.setReference(position, ControlType.kPosition);
+        // theMotorClosedLoopController.
+
         if ((getElevatorPosition() - position) <= 0.1) {
             theMotor.set(0.25);
         } else if ((getElevatorPosition() - position) >= 0.1) {

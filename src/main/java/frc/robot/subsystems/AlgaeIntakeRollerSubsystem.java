@@ -17,9 +17,6 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     private boolean isIntakeRunning = false;
     private boolean isArmUp = false;
     
-    public AlgaeIntakeRollerSubsystem() {
-        
-    }
     public void rollIntake() {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();

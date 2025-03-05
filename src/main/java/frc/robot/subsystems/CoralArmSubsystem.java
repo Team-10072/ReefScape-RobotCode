@@ -13,6 +13,7 @@ public class CoralArmSubsystem extends SubsystemBase {
     private final RelativeEncoder ArmEncoder = ArmMotor.getAlternateEncoder();
     private final SparkMax IntakeMotor = new SparkMax(Constants.DriveConstants.kIntakeMotorCanId, MotorType.kBrushless);
     private final SparkMax IntakeMotor2 = new SparkMax(Constants.DriveConstants.kIntakeMotor2CanId, MotorType.kBrushless);
+    private final SparkMax TwistMotor = new SparkMax(Constants.DriveConstants.kTwistMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
     private boolean isIntakeRunning = false;
@@ -68,6 +69,9 @@ public class CoralArmSubsystem extends SubsystemBase {
                 isArmUp = true;
             }
         }
+    }
+    public void twistIntake(double speed) {
+        TwistMotor.set(speed);
     }
 
 }

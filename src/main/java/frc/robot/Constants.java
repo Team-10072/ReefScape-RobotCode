@@ -61,6 +61,7 @@ public final class Constants {
     public static final int kArmMotorCanId = 0;
     public static final int kIntakeMotorCanId = 0;
     public static final int kIntakeMotor2CanId = 0;
+    public static final int kTwistMotorCanId = 0;
 
     public static final int kAlgaeIntakeMotorCanId = 0;
     public static final int kAlgaeArmMotorCanId = 0;

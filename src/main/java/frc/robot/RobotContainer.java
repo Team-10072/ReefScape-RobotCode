@@ -35,7 +35,7 @@ public class RobotContainer {
 
   // The driver's controller
  GenericHID m_driverController = new GenericHID(OIConstants.FlightStick_Port);
- GenericHID m_SecondaryController = new GenericHID(OIConstants.Controller_Port);
+ //GenericHID m_SecondaryController = new GenericHID(OIConstants.Controller_Port);
 
 
   /**
@@ -43,7 +43,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-  //  configureButtonBindings();
+  //configureButtonBindings();
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(

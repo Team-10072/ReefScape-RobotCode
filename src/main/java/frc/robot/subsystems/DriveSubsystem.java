@@ -128,10 +128,24 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(swerveModuleStates[3]);
   }
 
+  public void drive_stick(double x_Axis, double y_Axis, double rotation) {
+  
+    double x = x_Axis;
+    double y = y_Axis;
+
+    Rotation2d angle = new Rotation2d(x_Axis, y_Axis);
+
+    
+
+
+
+  }
+
   
   /**
    * Sets the wheels into an X formation to prevent movement.
    */
+
   public void setX() {
     m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
     m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));

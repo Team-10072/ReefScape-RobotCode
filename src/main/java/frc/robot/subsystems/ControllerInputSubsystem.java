@@ -16,7 +16,9 @@ public class ControllerInputSubsystem extends SubsystemBase {
     }
     public void periodic() {
         // This method will be called once per scheduler run
-
+        algaeIntakeRollerSubsystem.checkOnMotors();
+        elevatorSubsystem.checkElevatorMotor();
+        coralArmSubsystem.checkOnMotors();
         if (controller.getRawButton(0)) {
             algaeIntakeRollerSubsystem.rollIntake();
         }

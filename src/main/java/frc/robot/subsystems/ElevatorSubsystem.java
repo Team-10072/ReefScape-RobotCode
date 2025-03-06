@@ -22,7 +22,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     /**
      * The main elevator motor, as a SparkMax
      */
-    private final SparkMax theMotor = new SparkMax(Constants.DriveConstants.kElevatorMotorCanId, MotorType.kBrushless);
+    private final SparkMax theMotor = new SparkMax(Constants.CoralSystemConstants.kElevatorMotorCanId, MotorType.kBrushless);
     /**
      * The main elevator motor's encoder
      */

@@ -16,14 +16,12 @@
 
 package frc.robot;
 
-import com.revrobotics.sim.SparkLimitSwitchSim;
+// import com.revrobotics.sim.SparkLimitSwitchSim;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-import frc.robot.Constants.ModuleConstants;
-import frc.robot.Constants.coralSystemConstants;
-import frc.robot.Constants.algaeSystemConstants;
+// import frc.robot.Constants;
 
 
 public final class Configs {
@@ -33,10 +31,10 @@ public final class Configs {
 
         static {
             // Use module constants to calculate conversion factors and feed forward gain.
-            double drivingFactor = ModuleConstants.kWheelDiameterMeters * Math.PI
-                    / ModuleConstants.kDrivingMotorReduction;
+            double drivingFactor = Constants.ModuleConstants.kWheelDiameterMeters * Math.PI
+                    / Constants.ModuleConstants.kDrivingMotorReduction;
             double turningFactor = 2 * Math.PI;
-            double drivingVelocityFeedForward = 1 / ModuleConstants.kDriveWheelFreeSpeedRps;
+            double drivingVelocityFeedForward = 1 / Constants.ModuleConstants.kDriveWheelFreeSpeedRps;
 
             drivingConfig
                     .idleMode(IdleMode.kBrake)
@@ -101,7 +99,7 @@ public final class Configs {
 
         R_coralMotorConfig
                 .idleMode(IdleMode.kBrake)
-                .follow(algaeSystemConstants.kAlgaeArmMotorCanId);
+                .follow(Constants.AlgaeSystemConstants.kAlgaeArmMotorCanId);
                 //Ensure that this Motor is inverted during the setup phase as it is just going to follow the other one. 
         }
 

@@ -9,11 +9,11 @@ import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
 
 public class CoralArmSubsystem extends SubsystemBase {
-    private final SparkMax ArmMotor = new SparkMax(Constants.DriveConstants.kArmMotorCanId, MotorType.kBrushless);
+    private final SparkMax ArmMotor = new SparkMax(Constants.CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final RelativeEncoder ArmEncoder = ArmMotor.getAlternateEncoder();
-    private final SparkMax IntakeMotor = new SparkMax(Constants.DriveConstants.kIntakeMotorCanId, MotorType.kBrushless);
-    private final SparkMax IntakeMotor2 = new SparkMax(Constants.DriveConstants.kIntakeMotor2CanId, MotorType.kBrushless);
-    private final SparkMax TwistMotor = new SparkMax(Constants.DriveConstants.kTwistMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor = new SparkMax(Constants.CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor2 = new SparkMax(Constants.CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax TwistMotor = new SparkMax(Constants.CoralSystemConstants.kTwistMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
     private boolean isIntakeRunning = false;

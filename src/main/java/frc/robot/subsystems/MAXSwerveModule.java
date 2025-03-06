@@ -12,6 +12,9 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import java.util.ArrayList;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
 
@@ -20,6 +23,15 @@ import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
 
 public class MAXSwerveModule {
+  enum Position {
+    FRONT_LEFT,
+    FRONT_RIGHT,
+    REAR_LEFT,
+    REAR_RIGHT
+  }
+  
+  public static final ArrayList<MAXSwerveModule> swerveDrives = new ArrayList<MAXSwerveModule>(4);
+
   private final SparkMax m_drivingSpark;
   private final SparkMax m_turningSpark;
 
@@ -32,13 +44,17 @@ public class MAXSwerveModule {
   private double m_chassisAngularOffset = 0;
   private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
+  public Position position;
+
   /**
    * Constructs a MAXSwerveModule and configures the driving and turning motor,
    * encoder, and PID controller. This configuration is specific to the REV
    * MAXSwerve Module built with NEOs, SPARKS MAX, and a Through Bore
    * Encoder.
    */
-  public MAXSwerveModule(int drivingCANId, int turningCANId, double chassisAngularOffset) {
+  public MAXSwerveModule(int drivingCANId, int turningCANId, double chassisAngularOffset, Position pos) {
+    swerveDrives.add(this);
+
     m_drivingSpark = new SparkMax(drivingCANId, MotorType.kBrushless);
     m_turningSpark = new SparkMax(turningCANId, MotorType.kBrushless);
 
@@ -56,6 +72,7 @@ public class MAXSwerveModule {
     m_turningSpark.configure(Configs.MAXSwerveModule.turningConfig, ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
 
+    position = pos;
     m_chassisAngularOffset = chassisAngularOffset;
     m_desiredState.angle = new Rotation2d(m_turningEncoder.getPosition());
     m_drivingEncoder.setPosition(0);

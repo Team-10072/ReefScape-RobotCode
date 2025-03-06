@@ -59,6 +59,7 @@ public final class Constants {
 
     public static final boolean kGyroReversed = false;
     public static final boolean kDriveRelativeToField = false;
+    public static final double kCoralArmMaxMotorAngle = 0;
   }
 
   public static final class ModuleConstants {
@@ -105,15 +106,17 @@ public final class Constants {
     public static final double kAcceptableMotorTemp = 65; // Note: this is in Celsius
   }
 
-  public static final class coralSystemConstants {
+  public static final class CoralSystemConstants {
 
     public static final int kElevatorMotorCanId = 0;
 
     public static final int kArmRotationCanId = 0;
     public static final int k_L_IntakeMotorCanId = 0;
     public static final int k_R_IntakeMotorCanId = 0;
-  
+    
     public static final boolean kGyroReversed = false;
+
+    public static final int kTwistMotorCanId = 0;
 
     public static final double kCoralArmMaxMotorAngle = 20.0;
     public static final double kCoralTwistMaxMotorAngle = 20.0;
@@ -123,7 +126,7 @@ public final class Constants {
     
   } 
 
-  public static final class algaeSystemConstants {
+  public static final class AlgaeSystemConstants {
 
     public static final int kAlgaeIntakeMotorCanId = 0;
     public static final int kAlgaeArmMotorCanId = 0;

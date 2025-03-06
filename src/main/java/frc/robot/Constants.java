@@ -57,22 +57,6 @@ public final class Constants {
     public static final int kFrontRightTurningCanId = 3;
     public static final int kRearRightTurningCanId = 7;
 
-    public static final int kElevatorMotorCanId = 0;
-
-    public static final int kArmMotorCanId = 0;
-    public static final int kIntakeMotorCanId = 0;
-    public static final int kIntakeMotor2CanId = 0;
-    public static final int kTwistMotorCanId = 0;
-
-    public static final int kAlgaeIntakeMotorCanId = 0;
-    public static final int kAlgaeArmMotorCanId = 0;
-
-    public static final boolean kGyroReversed = false;
-
-    public static final double kCoralArmMaxMotorAngle = 20.0;
-    public static final double kCoralTwistMaxMotorAngle = 20.0;
-    public static final double kAlgaeArmMaxMotorAngle = 20.0;
-
     public static final boolean kDriveRelativeToField = false;
   }
 
@@ -116,5 +100,31 @@ public final class Constants {
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
     public static final double kAcceptableMotorTemp = 65; // Note: this is in Celsius
+  }
+
+  public static final class coralSystemConstants {
+
+    public static final int kElevatorMotorCanId = 0;
+
+    public static final int kArmRotationCanId = 0;
+    public static final int k_L_IntakeMotorCanId = 0;
+    public static final int k_R_IntakeMotorCanId = 0;
+  
+    public static final boolean kGyroReversed = false;
+
+    public static final double kCoralArmMaxMotorAngle = 20.0;
+    public static final double kCoralTwistMaxMotorAngle = 20.0;
+
+    public static final double armRotation_GearReduction = .25; //The motor is attached to a gear box with a 1:4 Reduction. This Value is for making the math easy later on
+    public static final double elevator_GearReduction = 1.9;   //38:20 Ratio - so turning the input 1 full rotation turns the output 1.9 times!
+    
+  } 
+
+  public static final class algaeSystemConstants {
+
+    public static final int kAlgaeIntakeMotorCanId = 0;
+    public static final int kAlgaeArmMotorCanId = 0;
+    
+    public static final double kAlgaeArmMaxMotorAngle = 20.0;
   }
 }

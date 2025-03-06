@@ -22,22 +22,26 @@ public class DriveSubsystem extends SubsystemBase {
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       Constants.DriveConstants.kFrontLeftDrivingCanId,
       Constants.DriveConstants.kFrontLeftTurningCanId,
-      Constants.DriveConstants.kFrontLeftChassisAngularOffset);
+      Constants.DriveConstants.kFrontLeftChassisAngularOffset,
+      MAXSwerveModule.Position.FRONT_LEFT);
 
   private final MAXSwerveModule m_frontRight = new MAXSwerveModule(
       Constants.DriveConstants.kFrontRightDrivingCanId,
       Constants.DriveConstants.kFrontRightTurningCanId,
-      Constants.DriveConstants.kFrontRightChassisAngularOffset);
+      Constants.DriveConstants.kFrontRightChassisAngularOffset,
+      MAXSwerveModule.Position.FRONT_RIGHT);
 
   private final MAXSwerveModule m_rearLeft = new MAXSwerveModule(
       Constants.DriveConstants.kRearLeftDrivingCanId,
       Constants.DriveConstants.kRearLeftTurningCanId,
-      Constants.DriveConstants.kBackLeftChassisAngularOffset);
+      Constants.DriveConstants.kBackLeftChassisAngularOffset,
+      MAXSwerveModule.Position.REAR_LEFT);
 
   private final MAXSwerveModule m_rearRight = new MAXSwerveModule(
       Constants.DriveConstants.kRearRightDrivingCanId,
       Constants.DriveConstants.kRearRightTurningCanId,
-      Constants.DriveConstants.kBackRightChassisAngularOffset);
+      Constants.DriveConstants.kBackRightChassisAngularOffset,
+      MAXSwerveModule.Position.REAR_RIGHT);
 
   // The gyro sensor
   private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();

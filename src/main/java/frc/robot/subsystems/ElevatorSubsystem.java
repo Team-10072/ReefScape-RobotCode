@@ -10,22 +10,24 @@ import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.util.sendable.SendableRegistry;
-import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
+
+import frc.robot.Constants;
+import frc.robot.Constants.coralSystemConstants;
+
+
+
+
+
 /**
  * This is the subsystem designed to operate the Elevator.
  * It is instanted by calling new ElevatorSubsystem();
- * 
  */
 
 public class ElevatorSubsystem extends SubsystemBase {
-    /**
-     * The main elevator motor, as a SparkMax
-     */
-    private final SparkMax theMotor = new SparkMax(Constants.DriveConstants.kElevatorMotorCanId, MotorType.kBrushless);
-    /**
-     * The main elevator motor's encoder
-     */
+ 
+    private final SparkMax theMotor = new SparkMax(coralSystemConstants.kElevatorMotorCanId, MotorType.kBrushless);
+
     private AbsoluteEncoder absoluteEncoder = theMotor.getAbsoluteEncoder();
     /**
      * The main elevator motor's closed loop controller

@@ -1,18 +1,24 @@
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
+import frc.robot.Constants.algaeSystemConstants;
+
+
 // import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
 
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
-    private final SparkMax algaeIntakeMotor = new SparkMax(Constants.DriveConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
+    
+    private final SparkMax algaeIntakeMotor = new SparkMax(algaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
     // private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
-    private final SparkMax algaeArmMotor = new SparkMax(Constants.DriveConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
+    private final SparkMax algaeArmMotor = new SparkMax(algaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
+    
     private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
+    
     private double timeAtStartIntake = 0.0;
     private boolean isIntakeRunning = false;
     private boolean isArmUp = false;
@@ -47,7 +53,7 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             return;
         }
         if (!armShouldGoUp) {
-            if (algaeArmEncoder.getPosition() < Constants.DriveConstants.kAlgaeArmMaxMotorAngle) {
+            if (algaeArmEncoder.getPosition() < algaeSystemConstants.kAlgaeArmMaxMotorAngle) {
                 algaeArmMotor.set(0.25);
             } else {
                 algaeArmMotor.set(0.0);

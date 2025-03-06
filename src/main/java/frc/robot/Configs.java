@@ -97,7 +97,7 @@ public final class Configs {
 
         L_coralMotorConfig
                 .idleMode(IdleMode.kBrake)
-                .smartCurrentLimit(80)
+                .smartCurrentLimit(80);
 
         R_coralMotorConfig
                 .idleMode(IdleMode.kBrake)

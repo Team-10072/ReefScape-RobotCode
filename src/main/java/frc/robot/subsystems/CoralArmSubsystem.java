@@ -13,16 +13,16 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
-import frc.robot.Constants.coralSystemConstants;
+import frc.robot.Constants.CoralSystemConstants;
 
 public class CoralArmSubsystem extends SubsystemBase {
 
-    private final SparkMax ArmMotor = new SparkMax(coralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
+    private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
 
 
-    private final SparkMax IntakeMotor = new SparkMax(coralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
-    private final SparkMax IntakeMotor2 = new SparkMax(coralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor2 = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
 
@@ -115,7 +115,7 @@ public class CoralArmSubsystem extends SubsystemBase {
             return;
         }
         if (!armShouldGoUp) {
-            if (ArmEncoder.getPosition() < coralSystemConstants.kCoralArmMaxMotorAngle) {
+            if (ArmEncoder.getPosition() < CoralSystemConstants.kCoralArmMaxMotorAngle) {
                 ArmMotor.set(0.25);
             } else {
                 ArmMotor.set(0.0);

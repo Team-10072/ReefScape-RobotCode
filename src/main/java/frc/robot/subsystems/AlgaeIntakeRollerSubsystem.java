@@ -1,8 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-import frc.robot.Constants.algaeSystemConstants;
-
+import frc.robot.Constants.AlgaeSystemConstants;
 
 // import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
@@ -13,9 +12,9 @@ import frc.robot.MotorTempTooHigh;
 
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     
-    private final SparkMax algaeIntakeMotor = new SparkMax(algaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax algaeIntakeMotor = new SparkMax(AlgaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
     // private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
-    private final SparkMax algaeArmMotor = new SparkMax(algaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
+    private final SparkMax algaeArmMotor = new SparkMax(AlgaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
     
     private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
     
@@ -53,7 +52,7 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             return;
         }
         if (!armShouldGoUp) {
-            if (algaeArmEncoder.getPosition() < algaeSystemConstants.kAlgaeArmMaxMotorAngle) {
+            if (algaeArmEncoder.getPosition() < AlgaeSystemConstants.kAlgaeArmMaxMotorAngle) {
                 algaeArmMotor.set(0.25);
             } else {
                 algaeArmMotor.set(0.0);

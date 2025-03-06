@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.MotorTempTooHigh;
 
 import frc.robot.Constants;
-import frc.robot.Constants.coralSystemConstants;
+import frc.robot.Constants.CoralSystemConstants;
 
 
 
@@ -26,7 +26,7 @@ import frc.robot.Constants.coralSystemConstants;
 
 public class ElevatorSubsystem extends SubsystemBase {
  
-    private final SparkMax theMotor = new SparkMax(coralSystemConstants.kElevatorMotorCanId, MotorType.kBrushless);
+    private final SparkMax theMotor = new SparkMax(CoralSystemConstants.kElevatorMotorCanId, MotorType.kBrushless);
 
     private AbsoluteEncoder absoluteEncoder = theMotor.getAbsoluteEncoder();
     /**

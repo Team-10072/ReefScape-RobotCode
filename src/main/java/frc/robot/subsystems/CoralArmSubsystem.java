@@ -2,30 +2,34 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
-import org.ejml.dense.row.decomposition.eig.SymmetricQRAlgorithmDecomposition_DDRM;
+// import org.ejml.dense.row.decomposition.eig.SymmetricQRAlgorithmDecomposition_DDRM;
 
-import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.RelativeEncoder;
+// import com.revrobotics.AbsoluteEncoder;
+// import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
-import frc.robot.MotorTempTooHigh;
-
 public class CoralArmSubsystem extends SubsystemBase {
-    private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
-    private final RelativeEncoder ArmEncoder = ArmMotor.getAlternateEncoder();
-    private final SparkMax IntakeMotor = new SparkMax(Constants.CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
-    private final SparkMax IntakeMotor2 = new SparkMax(Constants.CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
-    private final SparkMax TwistMotor = new SparkMax(Constants.CoralSystemConstants.kTwistMotorCanId, MotorType.kBrushless);
 
-    private double timeAtStartIntake = 0.0;
+    private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
+    private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
+
+
+    private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor2 = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
+
+    private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
+
     private boolean isIntakeRunning = false;
     private boolean isArmUp = false;
     
+    private double goalArmPosition = 0.0;
 
     public CoralArmSubsystem() {
         
@@ -41,24 +45,21 @@ public class CoralArmSubsystem extends SubsystemBase {
     public void basicSetPoints(char requestedPreset){
         
 
-        double preset_A = 10;
-        double preset_B = 20;
-        double preset_C = 30;
+        double preset_A = 10.0;
+        double preset_B = 20.0;
+        double preset_C = 30.0;
 
 
         switch (requestedPreset) {
             case 'A':
-                
+                goalArmPosition = preset_A;
                 break;
-
             case 'B':
-
+                goalArmPosition = preset_B;
                 break;
-
             case 'C':
-
-                break;    
-
+                goalArmPosition = preset_C;
+                break;
             default:
                 break;
         }
@@ -84,7 +85,7 @@ public class CoralArmSubsystem extends SubsystemBase {
 
 
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.
-    public void checkOnMotors() {
+    public void tempCheck() {
         if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor.set(0.0);
             throw new MotorTempTooHigh("The Coral Intake Motor is too hot!");
@@ -98,14 +99,27 @@ public class CoralArmSubsystem extends SubsystemBase {
             throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
         }
     }
+
+
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
+
+    //The Code below seems to just set a desired speed for the arms motor, this could work, but i would recommend Changing this out for closed loop control
+    //Closed Loop Control Will Offer more precision and error correction. 
+    //This motor/Axis will hav an absolute encoder installed, so we can use that to Verify the positions
     public void changeArmPosition(boolean armShouldGoUp) {
         if (armShouldGoUp == isArmUp) {
             return;
         }
         if (!armShouldGoUp) {
+            goalArmPosition = 0.0;
+        } else {
+            goalArmPosition = CoralSystemConstants.kCoralArmMaxMotorAngle;
+        }
+        arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
+        
+        /*if (!armShouldGoUp) {
             if (ArmEncoder.getPosition() < CoralSystemConstants.kCoralArmMaxMotorAngle) {
                 ArmMotor.set(0.25);
             } else {
@@ -121,8 +135,5 @@ public class CoralArmSubsystem extends SubsystemBase {
             }
         }*/
     }
-    public void twistIntake(double speed) {
-        TwistMotor.set(speed);
-    }
-
+ 
 }

@@ -16,10 +16,8 @@ import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
 public class CoralArmSubsystem extends SubsystemBase {
-
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
-
 
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
     private final SparkMax IntakeMotor2 = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);

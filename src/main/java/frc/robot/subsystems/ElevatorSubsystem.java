@@ -74,7 +74,7 @@ public class ElevatorSubsystem extends SubsystemBase {
             theMotor.set(0);
             throw new MotorTempTooHigh("Elevator Motor Temperature is too High!");
         }
-        if (position >= 0 || position <= 0) {
+        if (position > 0 || position < 580) {
             theMotor.set(0);
             endstopTriggered = true;
         }

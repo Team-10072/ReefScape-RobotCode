@@ -2,10 +2,13 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants;
 import frc.robot.Constants.AlgaeSystemConstants;
+import frc.robot.Constants.CoralSystemConstants;
 
 // import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.RelativeEncoder;
+// import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.MotorTempTooHigh;
@@ -13,14 +16,17 @@ import frc.robot.MotorTempTooHigh;
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     
     private final SparkMax algaeIntakeMotor = new SparkMax(AlgaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
-    // private final AbsoluteEncoder algaeIntakeEncoder = algaeIntakeMotor.getAbsoluteEncoder();
+    
     private final SparkMax algaeArmMotor = new SparkMax(AlgaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
     
-    private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
-    
+    // private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
+    private final SparkClosedLoopController arm_ClosedLoop = algaeArmMotor.getClosedLoopController();
+
     private double timeAtStartIntake = 0.0;
     private boolean isIntakeRunning = false;
     private boolean isArmUp = false;
+
+    private double goalArmPosition = 0.0;
     
     public void rollIntake() {
         if (!isIntakeRunning) {
@@ -52,19 +58,10 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             return;
         }
         if (!armShouldGoUp) {
-            if (algaeArmEncoder.getPosition() < AlgaeSystemConstants.kAlgaeArmMaxMotorAngle) {
-                algaeArmMotor.set(0.25);
-            } else {
-                algaeArmMotor.set(0.0);
-                isArmUp = false;
-            }
+            goalArmPosition = 0.0;
         } else {
-            if (algaeArmEncoder.getPosition() > 0.0) {
-                algaeArmMotor.set(-0.25);
-            } else {
-                algaeArmMotor.set(0.0);
-                isArmUp = true;
-            }
+            goalArmPosition = CoralSystemConstants.kCoralArmMaxMotorAngle;
         }
+        arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
     }
 }

@@ -37,9 +37,7 @@ public class CoralArmSubsystem extends SubsystemBase {
 
 
     public void basicRotation(double setPoint) {
-
         arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
-
     }
 
     public void basicSetPoints(char requestedPreset){

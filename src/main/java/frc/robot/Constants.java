@@ -133,4 +133,15 @@ public final class Constants {
     
     public static final double kAlgaeArmMaxMotorAngle = 20.0;
   }
+
+  public static final class LevelConstantsCoral {
+    public static final double kLevel1RotationCoral = 45.0;
+    public static final double kLevel1HeightElevator = 0.0;
+
+    public static final double kLevel2RotationCoral = 45.0;
+    public static final double kLevel2HeightElevator = 117.4;
+
+    public static final double kLevel3RotationCoral = 1.0;
+    public static final double kLevel3HeightElevator = 550.0;
+  }
 }

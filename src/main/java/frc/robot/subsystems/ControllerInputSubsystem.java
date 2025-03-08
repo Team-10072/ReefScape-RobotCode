@@ -3,6 +3,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.Constants;
+import frc.robot.Map;
 
 public class ControllerInputSubsystem extends SubsystemBase {
     private final GenericHID controller = new GenericHID(Constants.OIConstants.kDriverControllerPort);
@@ -19,6 +20,16 @@ public class ControllerInputSubsystem extends SubsystemBase {
         algaeIntakeRollerSubsystem.checkOnMotors();
         elevatorSubsystem.checkElevatorMotor();
         coralArmSubsystem.tempCheck();
+        if (controller.getRawButton(11)) {
+            double mappedInput = Map.map(controller.getRawAxis(3), -1, 1, 0, 100);
+            if (mappedInput < 33) {
+
+            } else if ((mappedInput <= 66) && (mappedInput >= 33)) {
+
+            } else if (mappedInput > 66) {
+
+            }
+        }
         if (controller.getRawButton(0)) {
             algaeIntakeRollerSubsystem.rollIntake();
         }

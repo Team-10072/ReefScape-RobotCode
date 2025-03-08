@@ -61,15 +61,6 @@ public class ElevatorSubsystem extends SubsystemBase {
      */
     public void setTheMotorTo(double position) {
         theMotorClosedLoopController.setReference(position, ControlType.kPosition);
-        // theMotorClosedLoopController.
-
-        if ((getElevatorPosition() - position) <= 0.1) {
-            theMotor.set(0.25);
-        } else if ((getElevatorPosition() - position) >= 0.1) {
-            theMotor.set(-0.25);
-        } else {
-            theMotor.set(0);
-        }
     }
     /**
      * Checks the main elevator motor to see if it is in unacceptable ranges or if it is too warm.

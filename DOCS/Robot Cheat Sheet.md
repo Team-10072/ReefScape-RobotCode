@@ -17,9 +17,15 @@ This is A document to reflect information regarding the robot that may be releve
 Swerve Module Naming Scheme
 
 Each Swerve Module is labled either A, B, C, or D.
+
+A - Front Left
+B - Front Right
+C - Rear Left
+D - Rear Right
+
 Each Module Has 2 Motors - therefore it also has 2 Motor Controllers
-- Motor Controllers with a 1 are: Drive Motors
-- Motor Controllers with a 2 are: Turning Motors
+- Motor Controllers that are even are: Drive Motors
+- Motor Controllers that are odd are: Turning Motors
 Graph Below to Explain
 
 
@@ -42,9 +48,11 @@ Elevator_Z - 16
 
 Arm_Angle - 12
 
-Arm_Extension - 
+Arm_Intake - 14 & 15
 
-Intake_Wheel - 
+Algae_Angle - 13
+
+Algea_Roller- 17
 
 ## Controllers 
 This is the Button Mapping For The Controllers
@@ -56,6 +64,6 @@ This is the Button Mapping For The Controllers
 
 - Stick_Rotation - Turning the robot
 
-- Push_Bar - None (so far)
+- Push_Bar - Possibly controlling the height of the elevator
 
 - Stick_Button - 

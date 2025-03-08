@@ -7,18 +7,19 @@ This is the place that we will keep track of all the things we need to accomplis
 
 ## General To Do
 
-- Configure Default Controller Configuration
+- Configure Default Controller Configuration (Complete)
 - Swerve Drive Code (Complete)
 - Elevator Code (Complete)(Maybe)
-- Intake Code 
-- Vision/ April tags
-- Autonomous
+- Arm Intake/Angle Code (In progress)
+- Algae Intake/Roller Code (In progress)
+- Vision/ April tags (Complete)
+- Autonomous (In progress)
 
 
-## Swerve Drive Code
+## Swerve Drive Code (Complete)
 
-- Update CAN ID's in CONSTANTS (Complete)
-- Implement Alignment/Calibration - Swerve Modules Should (Complete)
+- Update CAN ID's in CONSTANTS
+- Implement Alignment/Calibration - Swerve Modules Should
     - Zero out Absolute Encoders
     - Zero out relative Encoders
     - Report Current Status --> Driver Station
@@ -28,7 +29,7 @@ This is the place that we will keep track of all the things we need to accomplis
 
 
 
-## Elevator Code
+## Elevator Code (Almost done)
 
 - Subsystem
     - Elevator Motor & Encoder

@@ -15,8 +15,9 @@ Suggestions or Concerns? Feel Free to toss them in the [Suggestions/Concerns](DO
 The Primary Design Goal will include:
 
 - REV MAX Swerve Base
-- One Stage Rev NEO Motor Driven Elevator
-- Three Pronged "Trident" Intake With a focus on Algea
+- Two Stage Rev NEO Motor Driven Elevator
+- An Algae intake (One brushles motor)
+- An Arm intake (Two Brushless Motors)
 
 
 ## Our Targets are: 

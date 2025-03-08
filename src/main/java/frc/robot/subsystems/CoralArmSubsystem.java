@@ -1,75 +1,26 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-
-import org.ejml.dense.row.decomposition.eig.SymmetricQRAlgorithmDecomposition_DDRM;
-
-import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkBase.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
+import frc.robot.MotorTempTooHigh;
+
 public class CoralArmSubsystem extends SubsystemBase {
-
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
-    private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
+    private final RelativeEncoder ArmEncoder = ArmMotor.getAlternateEncoder();
+    private final SparkMax IntakeMotor = new SparkMax(Constants.CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax IntakeMotor2 = new SparkMax(Constants.CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
+    private final SparkMax TwistMotor = new SparkMax(Constants.CoralSystemConstants.kTwistMotorCanId, MotorType.kBrushless);
 
-
-    private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
-    private final SparkMax IntakeMotor2 = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
-
-    private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
-
+    private double timeAtStartIntake = 0.0;
     private boolean isIntakeRunning = false;
     private boolean isArmUp = false;
     
-
-    public CoralArmSubsystem() {
-        
-    }
-
-
-    public void basicRotation(double setPoint) {
-
-        arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
-
-    }
-
-    public void basicSetPoints(char requestedPreset){
-        
-
-        double preset_A = 10;
-        double preset_B = 20;
-        double preset_C = 30;
-
-
-        switch (requestedPreset) {
-            case 'A':
-                
-                break;
-
-            case 'B':
-
-                break;
-
-            case 'C':
-
-                break;    
-
-            default:
-                break;
-        }
-
-    }
-
-
-
     public void rollIntake() {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();
@@ -84,9 +35,6 @@ public class CoralArmSubsystem extends SubsystemBase {
             }
         }
     }
-
-
-    //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.
     public void checkOnMotors() {
         if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor.set(0.0);
@@ -101,21 +49,15 @@ public class CoralArmSubsystem extends SubsystemBase {
             throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
         }
     }
-
-
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
-
-    //The Code below seems to just set a desired speed for the arms motor, this could work, but i would recommend Changing this out for closed loop control
-    //Closed Loop Control Will Offer more precision and error correction. 
-    //This motor/Axis will hav an absolute encoder installed, so we can use that to Verify the positions
     public void changeArmPosition(boolean armShouldGoUp) {
         if (armShouldGoUp == isArmUp) {
             return;
         }
         if (!armShouldGoUp) {
-            if (ArmEncoder.getPosition() < CoralSystemConstants.kCoralArmMaxMotorAngle) {
+            if (ArmEncoder.getPosition() < Constants.DriveConstants.kCoralArmMaxMotorAngle) {
                 ArmMotor.set(0.25);
             } else {
                 ArmMotor.set(0.0);
@@ -130,5 +72,8 @@ public class CoralArmSubsystem extends SubsystemBase {
             }
         }
     }
- 
+    public void twistIntake(double speed) {
+        TwistMotor.set(speed);
+    }
+
 }

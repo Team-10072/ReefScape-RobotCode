@@ -26,21 +26,21 @@ Graph Below to Explain
 
 ## CAN Bus IDS
 
-FL_Drive - 
-FL_Turn - 
+FL_Drive - 2
+FL_Turn - 1
 
-FR_Drive - 
-FR_Turn - 
+FR_Drive - 4
+FR_Turn - 3
 
-BL_Drive - 
-BL_Turn - 
+BL_Drive - 6
+BL_Turn - 5
 
-BR_Drive - 
-BR_Turn - 
+BR_Drive - 8
+BR_Turn - 7
 
-Elevator_Z - 
+Elevator_Z - 16
 
-Arm_Angle - 
+Arm_Angle - 12
 
 Arm_Extension - 
 
@@ -51,11 +51,11 @@ This is the Button Mapping For The Controllers
 
 ### Flight Stick - Model 
 
-- X_Axis - 
-- Y_Axis - 
+- X_Axis - Moves side to side
+- Y_Axis - Moves forward and backwards
 
-- Stick_Rotation - 
+- Stick_Rotation - Turning the robot
 
-- Push_Bar - 
+- Push_Bar - None (so far)
 
 - Stick_Button - 

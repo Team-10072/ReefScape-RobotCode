@@ -23,11 +23,11 @@ public class ControllerInputSubsystem extends SubsystemBase {
         if (controller.getRawButton(11)) {
             double mappedInput = Map.map(controller.getRawAxis(3), -1, 1, 0, 100);
             if (mappedInput < 33) {
-
+                coralArmSubsystem.basicSetPoints('A');
             } else if ((mappedInput <= 66) && (mappedInput >= 33)) {
-
+                coralArmSubsystem.basicSetPoints('B');
             } else if (mappedInput > 66) {
-
+                coralArmSubsystem.basicSetPoints('C');
             }
         }
         if (controller.getRawButton(0)) {
@@ -45,9 +45,6 @@ public class ControllerInputSubsystem extends SubsystemBase {
         }
         if (controller.getRawButton(2)) {
             coralArmSubsystem.rollIntake();
-        }
-        if (controller.getRawButton(3)) {
-            coralArmSubsystem.changeArmPosition();
         }
         driveSubsystem.drive(controller.getRawAxis(0), controller.getRawAxis(1), controller.getRawAxis(2), Constants.DriveConstants.kDriveRelativeToField);
 

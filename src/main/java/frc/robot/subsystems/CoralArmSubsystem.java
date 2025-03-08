@@ -27,7 +27,6 @@ public class CoralArmSubsystem extends SubsystemBase {
     private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
 
     private boolean isIntakeRunning = false;
-    private boolean isArmUp = false;
     
     private double goalArmPosition = 0.0;
 
@@ -41,30 +40,22 @@ public class CoralArmSubsystem extends SubsystemBase {
     }
 
     public void basicSetPoints(char requestedPreset){
-        
-
-        double preset_A = 10.0;
-        double preset_B = 20.0;
-        double preset_C = 30.0;
-
 
         switch (requestedPreset) {
             case 'A':
-                goalArmPosition = preset_A;
+                goalArmPosition = Constants.LevelConstantsCoral.kLevel1RotationCoral;
                 break;
             case 'B':
-                goalArmPosition = preset_B;
+                goalArmPosition = Constants.LevelConstantsCoral.kLevel2RotationCoral;
                 break;
             case 'C':
-                goalArmPosition = preset_C;
+                goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
                 break;
             default:
                 break;
         }
 
     }
-
-
 
     public void rollIntake() {
         if (!isIntakeRunning) {
@@ -80,7 +71,6 @@ public class CoralArmSubsystem extends SubsystemBase {
             }
         }
     }
-
 
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.
     public void tempCheck() {
@@ -98,40 +88,15 @@ public class CoralArmSubsystem extends SubsystemBase {
         }
     }
 
-
-    public void changeArmPosition() {
-        changeArmPosition(!isArmUp);
-    }
-
     //The Code below seems to just set a desired speed for the arms motor, this could work, but i would recommend Changing this out for closed loop control
     //Closed Loop Control Will Offer more precision and error correction. 
     //This motor/Axis will hav an absolute encoder installed, so we can use that to Verify the positions
-    public void changeArmPosition(boolean armShouldGoUp) {
-        if (armShouldGoUp == isArmUp) {
-            return;
-        }
-        if (!armShouldGoUp) {
-            goalArmPosition = 0.0;
-        } else {
+    public void changeArmPosition(double toWhere) {
+        if (toWhere > CoralSystemConstants.kCoralArmMaxMotorAngle) {
             goalArmPosition = CoralSystemConstants.kCoralArmMaxMotorAngle;
+        } else {
+            goalArmPosition = toWhere;
         }
         arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
-        
-        /*if (!armShouldGoUp) {
-            if (ArmEncoder.getPosition() < CoralSystemConstants.kCoralArmMaxMotorAngle) {
-                ArmMotor.set(0.25);
-            } else {
-                ArmMotor.set(0.0);
-                isArmUp = false;
-            }
-        } else {
-            if (ArmEncoder.getPosition() > 0.0) {
-                ArmMotor.set(-0.25);
-            } else {
-                ArmMotor.set(0.0);
-                isArmUp = true;
-            }
-        }*/
     }
- 
 }

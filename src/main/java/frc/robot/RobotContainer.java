@@ -20,6 +20,7 @@ import frc.robot.Constants.OIConstants;
 // import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
 import frc.robot.subsystems.CoralArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 // import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -39,6 +40,8 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final CoralArmSubsystem m_armMovement = new CoralArmSubsystem();
+  private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
+
   // private final AlgaeIntakeRollerSubsystem algaeIntake = new AlgaeIntakeRollerSubsystem();
 
 
@@ -70,9 +73,16 @@ public class RobotContainer {
 
 
       m_armMovement.setDefaultCommand(
-
         new RunCommand(
-          () -> m_armMovement.basicRotation(-MathUtil.applyDeadband(m_FlightStick.getRawAxis(5), OIConstants.kDriveDeadband))));
+          () -> m_armMovement.basicRotation(
+            -MathUtil.applyDeadband(m_FlightStick.getRawAxis(3), OIConstants.kDriveDeadband)),
+            m_armMovement));
+
+       m_ElevatorSubsystem.setDefaultCommand(
+          new RunCommand(
+            () -> m_ElevatorSubsystem.basicRaise(
+             -MathUtil.applyDeadband(m_FlightStick.getRawAxis(3), OIConstants.kDriveDeadband)),
+              m_ElevatorSubsystem));
 
   }
 

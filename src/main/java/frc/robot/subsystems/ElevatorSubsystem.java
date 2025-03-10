@@ -47,6 +47,11 @@ public class ElevatorSubsystem extends SubsystemBase {
      * Makes the main elevator motor move (with some common-sense speed limits)
      * @param speed speed you want to set the motor to
      */
+
+
+    public void basicRaise(double setPoint){
+        theMotorClosedLoopController.setReference(setPoint, ControlType.kPosition);
+    }
     public void moveTheMotor(double speed) {
         double sp = speed;
         if (speed < -0.5) {

@@ -80,7 +80,7 @@ public final class Constants {
   }
 
   public static final class OIConstants {
-    public static final int kDriverControllerPort = 2;
+    public static final int kDriverControllerPort = 0;
     public static final int ksecondControllerport = 1;
     
     public static final double kDriveDeadband = 0.05;
@@ -108,15 +108,11 @@ public final class Constants {
 
   public static final class CoralSystemConstants {
 
-    public static final int kElevatorMotorCanId = 16;
+    public static final int kElevatorMotorCanId = 11;
 
-    public static final int kArmRotationCanId = 0;
-    public static final int k_L_IntakeMotorCanId = 14;
-    public static final int k_R_IntakeMotorCanId = 15;
-    
-    public static final boolean kGyroReversed = false;
-
-    public static final int kTwistMotorCanId = 12;
+    public static final int kArmRotationCanId = 12;
+    public static final int k_L_IntakeMotorCanId = 13;
+    public static final int k_R_IntakeMotorCanId = 14;
 
     public static final double kCoralArmMaxMotorAngle = 20.0;
     public static final double kCoralTwistMaxMotorAngle = 20.0;
@@ -128,8 +124,8 @@ public final class Constants {
 
   public static final class AlgaeSystemConstants {
 
-    public static final int kAlgaeIntakeMotorCanId = 17;
-    public static final int kAlgaeArmMotorCanId = 13;
+    public static final int kAlgaeIntakeMotorCanId = 10;
+    public static final int kAlgaeArmMotorCanId = 11;
     
     public static final double kAlgaeArmMaxMotorAngle = 20.0;
   }

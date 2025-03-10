@@ -11,7 +11,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.MotorTempTooHigh;
+//import frc.robot.MotorTempTooHigh;
 
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     
@@ -43,11 +43,11 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     public void checkOnMotors() {
         if (algaeIntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             algaeIntakeMotor.set(0.0);
-            throw new MotorTempTooHigh("The Algae Roller Intake Motor is too hot!");
+          //  throw new MotorTempTooHigh("The Algae Roller Intake Motor is too hot!");
         }
         if (algaeArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             algaeArmMotor.set(0.0);
-            throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
+          //  throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
         }
     }
     public void changeArmPosition() {

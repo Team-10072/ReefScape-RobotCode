@@ -13,50 +13,50 @@ import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 
 public class IntakeCommands extends Command{
 
-  //  private final CoralArmSubsystem m_intakeSystem;
-    //private final ElevatorSubsystem m_ElevatorSubsystem;
-    //private final AlgaeIntakeRollerSubsystem m_AlgaeIntakeRollerSubsystem;
+   private final CoralArmSubsystem m_intakeSystem;
+    private final ElevatorSubsystem m_ElevatorSubsystem;
+    private final AlgaeIntakeRollerSubsystem m_AlgaeIntakeRollerSubsystem;
 
     
 
     public IntakeCommands(CoralArmSubsystem intakeSubsystem, ElevatorSubsystem ElevatorSubsystem, AlgaeIntakeRollerSubsystem AlgaeIntakeRollerSubsystem){
 
-     //   m_intakeSystem = intakeSubsystem;
-      //  m_ElevatorSubsystem = ElevatorSubsystem;
-       // m_AlgaeIntakeRollerSubsystem = AlgaeIntakeRollerSubsystem;
+       m_intakeSystem = intakeSubsystem;
+       m_ElevatorSubsystem = ElevatorSubsystem;
+       m_AlgaeIntakeRollerSubsystem = AlgaeIntakeRollerSubsystem;
 
-      //  addRequirements(intakeSubsystem, ElevatorSubsystem, AlgaeIntakeRollerSubsystem);
+       addRequirements(intakeSubsystem, ElevatorSubsystem, AlgaeIntakeRollerSubsystem);
     }
 
 
     public void coral_intake_up(){
 
-     //   m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
-     //   m_ElevatorSubsystem.basicRaise(1); 
-     //   m_intakeSystem.basicRotation(1);
+       m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
+       m_ElevatorSubsystem.basicRaise(1); 
+       m_intakeSystem.basicRotation(1);
       }
       
       public void coral_intake_Close(){
 
-     //   m_ElevatorSubsystem.basicRaise(0); 
-     //   m_intakeSystem.basicRotation(0);
-     //   m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
+       m_ElevatorSubsystem.basicRaise(0); 
+       m_intakeSystem.basicRotation(0);
+       m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
       }
 
       public void coral_position_Presets(int arm_angle, int elevator_height){
 
-    //    m_ElevatorSubsystem.basicRaise(elevator_height);
-    //    m_intakeSystem.basicRotation(arm_angle);
+       m_ElevatorSubsystem.basicRaise(elevator_height);
+       m_intakeSystem.basicRotation(arm_angle);
 
       }
      public void coral_RestState(){
 
-     //   m_ElevatorSubsystem.basicRaise(0);
-     //   m_intakeSystem.basicRotation(0);
+       m_ElevatorSubsystem.basicRaise(0);
+       m_intakeSystem.basicRotation(0);
     }
 
      public void coral_eject(){
-     //   m_intakeSystem.rollIntake();
+       m_intakeSystem.rollIntake();
     }
 
 
@@ -64,7 +64,7 @@ public class IntakeCommands extends Command{
 // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  //  m_intakeSystem.initilize_arm_angle();
+   m_intakeSystem.initilize_arm_angle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -12,7 +12,7 @@ import com.revrobotics.spark.SparkBase.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-//import frc.robot.MotorTempTooHigh;
+import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
 public class CoralArmSubsystem extends SubsystemBase {

@@ -5,10 +5,10 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
 
 
-import javax.lang.model.util.ElementScanner14;
+// import javax.lang.model.util.ElementScanner14;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+// import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 
 
 public class IntakeCommands extends Command{
@@ -31,7 +31,7 @@ public class IntakeCommands extends Command{
 
     public void coral_intake_up(){
 
-       m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
+       m_AlgaeIntakeRollerSubsystem.set_angle(1);
        m_ElevatorSubsystem.basicRaise(1); 
        m_intakeSystem.basicRotation(1);
       }
@@ -40,7 +40,7 @@ public class IntakeCommands extends Command{
 
        m_ElevatorSubsystem.basicRaise(0); 
        m_intakeSystem.basicRotation(0);
-       m_AlgaeIntakeRollerSubsystem.set_intake_angle(1);
+       m_AlgaeIntakeRollerSubsystem.set_angle(1);
       }
 
       public void coral_position_Presets(int arm_angle, int elevator_height){

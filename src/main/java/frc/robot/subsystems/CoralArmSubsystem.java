@@ -16,6 +16,7 @@ import frc.robot.Constants;
 import frc.robot.Constants.CoralSystemConstants;
 
 public class CoralArmSubsystem extends SubsystemBase {
+   
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
 
@@ -33,20 +34,29 @@ public class CoralArmSubsystem extends SubsystemBase {
     }
 
 
-    public void basicRotation(double setPoint) {
-        arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
+    public int initilize_arm_angle(){
+
+        return 0;
     }
 
-    public void basicSetPoints(char requestedPreset){
+
+    public boolean basicRotation(double setPoint) {
+
+        arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
+
+        return true;
+    }
+
+    public void basicSetPoints(int requestedPreset){
 
         switch (requestedPreset) {
-            case 'A':
+            case '1':
                 goalArmPosition = Constants.LevelConstantsCoral.kLevel1RotationCoral;
                 break;
-            case 'B':
+            case '2':
                 goalArmPosition = Constants.LevelConstantsCoral.kLevel2RotationCoral;
                 break;
-            case 'C':
+            case '3':
                 goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
                 break;
             default:
@@ -74,7 +84,7 @@ public class CoralArmSubsystem extends SubsystemBase {
     public void tempCheck() {
         if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor.set(0.0);
-          //  throw new MotorTempTooHigh("The Coral Intake Motor is too hot!");
+            throw new MotorTempTooHigh("The Coral Intake Motor is too hot!");
         }
         if (IntakeMotor2.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor2.set(0.0);

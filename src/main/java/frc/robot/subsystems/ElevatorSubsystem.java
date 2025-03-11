@@ -10,7 +10,7 @@ import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.util.sendable.SendableRegistry;
-import frc.robot.MotorTempTooHigh;
+//import frc.robot.MotorTempTooHigh;
 
 import frc.robot.Constants;
 import frc.robot.Constants.CoralSystemConstants;
@@ -72,7 +72,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         double motorTemp = theMotor.getMotorTemperature();
         if (motorTemp >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             theMotor.set(0);
-            throw new MotorTempTooHigh("Elevator Motor Temperature is too High!");
+           // throw new MotorTempTooHigh("Elevator Motor Temperature is too High!");
         }
         if (position > 0 || position < 580) {
             theMotor.set(0);

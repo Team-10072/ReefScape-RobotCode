@@ -12,7 +12,7 @@ import com.revrobotics.spark.SparkBase.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.MotorTempTooHigh;
+//import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
 public class CoralArmSubsystem extends SubsystemBase {
@@ -74,15 +74,15 @@ public class CoralArmSubsystem extends SubsystemBase {
     public void tempCheck() {
         if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor.set(0.0);
-            throw new MotorTempTooHigh("The Coral Intake Motor is too hot!");
+          //  throw new MotorTempTooHigh("The Coral Intake Motor is too hot!");
         }
         if (IntakeMotor2.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor2.set(0.0);
-            throw new MotorTempTooHigh("The Coral Intake Motor 2 is too hot!");
+          //  throw new MotorTempTooHigh("The Coral Intake Motor 2 is too hot!");
         }
         if (ArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             ArmMotor.set(0.0);
-            throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
+          //  throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
         }
     }
 

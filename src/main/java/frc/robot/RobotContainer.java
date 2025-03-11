@@ -69,10 +69,10 @@ public class RobotContainer {
             m_robotDrive));
 
 
-      m_armMovement.setDefaultCommand(
+   //   m_armMovement.setDefaultCommand(
 
-        new RunCommand(
-          () -> m_armMovement.basicRotation(-MathUtil.applyDeadband(m_FlightStick.getRawAxis(5), OIConstants.kDriveDeadband))));
+    //    new RunCommand(
+     //     () -> m_armMovement.basicRotation(-MathUtil.applyDeadband(m_FlightStick.getRawAxis(5), OIConstants.kDriveDeadband))));
 
   }
 

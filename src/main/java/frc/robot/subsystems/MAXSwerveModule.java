@@ -20,7 +20,7 @@ import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Configs;
 import frc.robot.Constants;
-import frc.robot.MotorTempTooHigh;
+//import frc.robot.MotorTempTooHigh;
 
 public class MAXSwerveModule {
   enum Position {
@@ -101,11 +101,11 @@ public class MAXSwerveModule {
     
     if (m_drivingSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
       m_drivingSpark.set(0.0);
-      throw new MotorTempTooHigh("A Swerve Drive's Driving Motor's Temperature is too High!");
+      //throw new MotorTempTooHigh("A Swerve Drive's Driving Motor's Temperature is too High!");
     }
     if (m_turningSpark.getMotorTemperature() >= Constants.NeoMotorConstants.kAcceptableMotorTemp) {
       m_turningSpark.set(0.0);
-      throw new MotorTempTooHigh("A Swerve Drive's Turning Motor's Temperature is too High!");
+      //throw new MotorTempTooHigh("A Swerve Drive's Turning Motor's Temperature is too High!");
     }
       return new SwerveModulePosition(
         m_drivingEncoder.getPosition(),

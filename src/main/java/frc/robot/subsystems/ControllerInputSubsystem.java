@@ -6,7 +6,7 @@ import frc.robot.Constants;
 import frc.robot.Map;
 
 public class ControllerInputSubsystem extends SubsystemBase {
-   private final GenericHID controller = new GenericHID(Constants.OIConstants.kDriverControllerPort);
+    private final GenericHID controller = new GenericHID(Constants.OIConstants.kDriverControllerPort);
     private final AlgaeIntakeRollerSubsystem algaeIntakeRollerSubsystem = new AlgaeIntakeRollerSubsystem();
     private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
     private final CoralArmSubsystem coralArmSubsystem = new CoralArmSubsystem();
@@ -21,7 +21,7 @@ public class ControllerInputSubsystem extends SubsystemBase {
         // This method will be called once per scheduler run
         algaeIntakeRollerSubsystem.checkOnMotors();
         elevatorSubsystem.checkElevatorMotor();
-        coralArmSubsystem.tempCheck();
+coralArmSubsystem.tempCheck();
         if (controller.getRawButton(11)) {
             double mappedInput = Map.map(controller.getRawAxis(3), -1, 1, 0, 100);
             if (mappedInput < 33) {
@@ -48,7 +48,7 @@ public class ControllerInputSubsystem extends SubsystemBase {
         if (controller.getRawButton(2)) {
             coralArmSubsystem.rollIntake();
         }
-        driveSubsystem.drive(controller.getRawAxis(0), controller.getRawAxis(1), controller.getRawAxis(2), Constants.DriveConstants.kDriveRelativeToField);
+                driveSubsystem.drive(controller.getRawAxis(0), controller.getRawAxis(1), controller.getRawAxis(2), Constants.DriveConstants.kDriveRelativeToField);
 
     }
     public void disable() {

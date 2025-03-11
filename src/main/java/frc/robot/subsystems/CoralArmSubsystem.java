@@ -50,6 +50,9 @@ private double goalArmPosition = 0.0;
     return true;
     }
 
+
+    
+
     public void basicSetPoints(int requestedPreset){
         
         switch (requestedPreset) {

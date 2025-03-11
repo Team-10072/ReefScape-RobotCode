@@ -4,19 +4,15 @@ import frc.robot.Constants;
 import frc.robot.Constants.AlgaeSystemConstants;
 import frc.robot.Constants.CoralSystemConstants;
 
-// import com.revrobotics.AbsoluteEncoder;
-// import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-//import frc.robot.MotorTempTooHigh;
 
 public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     
     private final SparkMax algaeIntakeMotor = new SparkMax(AlgaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
-    
     private final SparkMax algaeArmMotor = new SparkMax(AlgaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
     
     // private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
@@ -28,6 +24,11 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
 
     private double goalArmPosition = 0.0;
     
+
+    public void set_angle(int angle){
+        arm_ClosedLoop.setReference(angle, ControlType.kPosition);
+    }
+
     public void rollIntake() {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();
@@ -50,6 +51,11 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
           //  throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
         }
     }
+
+    public void set_intake_angle(int angle){
+
+    }
+
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }

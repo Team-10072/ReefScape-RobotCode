@@ -125,7 +125,7 @@ public final class Constants {
   public static final class AlgaeSystemConstants {
 
     public static final int kAlgaeIntakeMotorCanId = 10;
-    public static final int kAlgaeArmMotorCanId = 11;
+    public static final int kAlgaeArmMotorCanId = 9;
     
     public static final double kAlgaeArmMaxMotorAngle = 20.0;
   }

@@ -129,8 +129,8 @@ public final class Constants {
     public static final int kAlgaeIntakeMotorCanId = 10;
     public static final int kAlgaeArmMotorCanId = 9;
     
-    public static final double kAlgaeArmStoragePos = 75.0;
-    public static final double kAlgaeArmRetrievalPos = 15.0;
+    public static final double kAlgaeArmStoragePos = 75.0; // need actual units
+    public static final double kAlgaeArmRetrievalPos = 15.0; // need actual units
   }
 
   public static final class LevelConstantsCoral {

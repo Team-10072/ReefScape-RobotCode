@@ -63,8 +63,7 @@ public class IntakeCommands extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-
+    
   }    
   // Called once the command ends or is interrupted.
   @Override
@@ -72,7 +71,6 @@ public class IntakeCommands extends Command {
     if (interrupted) {
       System.out.println("The command was interrupted");
     }
-    
   }
 
   // Returns true when the command should end.

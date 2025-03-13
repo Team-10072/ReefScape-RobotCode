@@ -20,11 +20,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
+// import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 // import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Commands.IntakeCommands;
+// import edu.wpi.first.wpilibj2.command.button.Trigger;
+// import frc.robot.Commands.IntakeCommands;
 
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
@@ -80,14 +80,14 @@ public class RobotContainer {
     int el_position_B = 20;
     int el_position_C = 30;
 
-    int arm_angle_intake = 10;
+    // int arm_angle_intake = 10;
     int arm_angle_A = 1;
     int arm_angle_B = 5;
     int arm_angle_C = 10;
 
 
     int algae_angle_A = 1;
-    int algae_angle_B = 1;
+    // int algae_angle_B = 1;
 
 
     

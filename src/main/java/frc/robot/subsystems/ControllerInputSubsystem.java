@@ -1,5 +1,5 @@
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+// import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.Constants;
@@ -13,7 +13,7 @@ public class ControllerInputSubsystem extends SubsystemBase {
     private final DriveSubsystem driveSubsystem = new DriveSubsystem();
     // private final SensorSubsystem sensorSubsystem = new SensorSubsystem();
     public ControllerInputSubsystem() {
-        CommandScheduler.getInstance().registerSubsystem(this);
+        // CommandScheduler.getInstance().registerSubsystem(this);
     }
 
     
@@ -36,7 +36,7 @@ coralArmSubsystem.tempCheck();
             algaeIntakeRollerSubsystem.rollIntake();
         }
         if (controller.getRawButton(1)) {
-            algaeIntakeRollerSubsystem.changeArmPosition();
+            // algaeIntakeRollerSubsystem.changeArmPosition();
         }
         if (controller.getPOV() == 0) {
             elevatorSubsystem.moveTheMotor(0.25);

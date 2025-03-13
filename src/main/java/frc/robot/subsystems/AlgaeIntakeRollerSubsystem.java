@@ -25,7 +25,7 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
 
     private double goalArmPosition = 0.0;
     
-    public void set_angle(int angle){
+    public void set_angle(int angle) {
         arm_ClosedLoop.setReference(angle, ControlType.kPosition);
     }
 

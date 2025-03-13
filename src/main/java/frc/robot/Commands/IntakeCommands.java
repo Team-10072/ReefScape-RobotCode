@@ -1,40 +1,32 @@
 package frc.robot.Commands;
 
-import frc.robot.subsystems.CoralArmSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
-
-
 // import javax.lang.model.util.ElementScanner14;
 
 import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
+import frc.robot.subsystems.CoralArmSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 
 
-public class IntakeCommands extends Command{
-
-   private final CoralArmSubsystem m_intakeSystem;
+public class IntakeCommands extends Command {
+    private final CoralArmSubsystem m_intakeSystem;
     private final ElevatorSubsystem m_ElevatorSubsystem;
     private final AlgaeIntakeRollerSubsystem m_AlgaeIntakeRollerSubsystem;
 
-    
+    public IntakeCommands(CoralArmSubsystem intakeSubsystem, ElevatorSubsystem ElevatorSubsystem, AlgaeIntakeRollerSubsystem AlgaeIntakeRollerSubsystem) {
+        m_intakeSystem = intakeSubsystem;
+        m_ElevatorSubsystem = ElevatorSubsystem;
+        m_AlgaeIntakeRollerSubsystem = AlgaeIntakeRollerSubsystem;
 
-    public IntakeCommands(CoralArmSubsystem intakeSubsystem, ElevatorSubsystem ElevatorSubsystem, AlgaeIntakeRollerSubsystem AlgaeIntakeRollerSubsystem){
-
-       m_intakeSystem = intakeSubsystem;
-       m_ElevatorSubsystem = ElevatorSubsystem;
-       m_AlgaeIntakeRollerSubsystem = AlgaeIntakeRollerSubsystem;
-
-       addRequirements(intakeSubsystem, ElevatorSubsystem, AlgaeIntakeRollerSubsystem);
+        addRequirements(intakeSubsystem, ElevatorSubsystem, AlgaeIntakeRollerSubsystem);
     }
 
-
-    public void coral_intake_up(){
-
-       m_AlgaeIntakeRollerSubsystem.set_angle(1);
-       m_ElevatorSubsystem.basicRaise(1); 
-       m_intakeSystem.basicRotation(1);
-      }
+    public void coral_intake_up() {
+        m_AlgaeIntakeRollerSubsystem.set_angle(1);
+        m_ElevatorSubsystem.basicRaise(1); 
+        m_intakeSystem.basicRotation(1);
+    }
       
       public void coral_intake_Close(){
 
@@ -85,8 +77,22 @@ public class IntakeCommands extends Command{
 
 
 
-// This command will intake coral. It will handle each of the small changes that need to be made before, during and after the intake process
-
+// This command will intake algae. It will handle each of the small changes that need to be made before, during and after the intake process
+      public void algae_intake_up() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(1);
+      }
+      public void algae_intake_close() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(0);
+      }
+      public void algae_position_presets(int arm_angle) {
+          m_AlgaeIntakeRollerSubsystem.set_angle(arm_angle);
+      }
+      public void algae_restState() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(0);
+      }
+      public void algae_eject(){
+          m_AlgaeIntakeRollerSubsystem.rollIntake();
+      }
 
 
 }

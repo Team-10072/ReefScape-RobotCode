@@ -26,7 +26,9 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     private double goalArmPosition = 0.0;
     
     public void set_angle(int angle) {
-        arm_ClosedLoop.setReference(angle, ControlType.kPosition);
+        if (angle < 1 && angle > -1) {
+            goalArmPosition = angle;
+        }
     }
 
     public void rollIntake() {
@@ -52,9 +54,39 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         }
     }
 
+    public int initilize_arm_angle() {
+        algaeArmMotor.set(0.0);
+        goalArmPosition = Constants.AlgaeSystemConstants.kAlgaeArmStoragePos;
+        return 0;
+    }
+
+    /*public static int randInt(int min, int max) {
+        int possibleAnswer = (int) (Math.random() * (max - min + 1) + min);
+        if (possibleAnswer == 12) {
+            return randInt(min, max);
+        } else {
+            return possibleAnswer;
+        }
+    }*/
+
+    public boolean updateReference() {
+        try {
+            arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * @deprecated
+     */
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
+    /**
+     * @deprecated
+     */
     public void changeArmPosition(boolean armShouldGoUp) {
         if (armShouldGoUp == isArmUp) {
             return;

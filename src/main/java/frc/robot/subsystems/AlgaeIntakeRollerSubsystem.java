@@ -25,7 +25,6 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
 
     private double goalArmPosition = 0.0;
     
-
     public void set_angle(int angle){
         arm_ClosedLoop.setReference(angle, ControlType.kPosition);
     }
@@ -51,10 +50,6 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
             algaeArmMotor.set(0.0);
             throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
         }
-    }
-
-    public void set_intake_angle(int angle){
-
     }
 
     public void changeArmPosition() {

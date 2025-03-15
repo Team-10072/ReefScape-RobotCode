@@ -15,7 +15,7 @@ import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
 
-import frc.robot.MotorTempTooHigh;
+// import frc.robot.MotorTempTooHigh;
 
 public class CoralArmSubsystem extends SubsystemBase {
 
@@ -28,7 +28,7 @@ public class CoralArmSubsystem extends SubsystemBase {
     private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
 
     private boolean isIntakeRunning = false;
-    private boolean isArmUp = false;
+    // private boolean isArmUp = false;
     
 private double goalArmPosition = 0.0;
 
@@ -38,40 +38,35 @@ private double goalArmPosition = 0.0;
 
 
     public int initilize_arm_angle(){
-
         return 0;
     }
 
 
     public boolean basicRotation(double setPoint) {
-
         arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
-
-    return true;
+        return true;
     }
 
 
     
 
-    public void basicSetPoints(int requestedPreset){
+
         
+    public void basicSetPoints(int requestedPreset) {    
         switch (requestedPreset) {
             case '1':
                 goalArmPosition = Constants.LevelConstantsCoral.kLevel1RotationCoral;
                 break;
-case '2':
-goalArmPosition = Constants.LevelConstantsCoral.kLevel2RotationCoral;
+            case '2':
+                goalArmPosition = Constants.LevelConstantsCoral.kLevel2RotationCoral;
                 break;
-case '3':
-goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
+            case '3':
+                goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
                 break;    
             default:
                 break;
         }
-
     }
-
-
 
     public void rollIntake() {
         if (!isIntakeRunning) {
@@ -88,7 +83,6 @@ goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
         }
     }
 
-
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.
     public void tempCheck() {
         if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
@@ -97,11 +91,11 @@ goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
         }
         if (IntakeMotor2.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor2.set(0.0);
-            //  throw new MotorTempTooHigh("The Coral Intake Motor 2 is too hot!");
+            throw new MotorTempTooHigh("The Coral Intake Motor 2 is too hot!");
         }
         if (ArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
             ArmMotor.set(0.0);
-            //  throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
+            throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
         }
     }
     
@@ -110,10 +104,10 @@ goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
     //This motor/Axis will hav an absolute encoder installed, so we can use that to Verify the positions
     public void changeArmPosition(double toWhere) {
         if (toWhere > CoralSystemConstants.kCoralArmMaxMotorAngle) {
-                goalArmPosition = CoralSystemConstants.kCoralArmMaxMotorAngle;
+            goalArmPosition = CoralSystemConstants.kCoralArmMaxMotorAngle;
         } else {
             goalArmPosition = toWhere;
-            }
+        }
         arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
     }
 }

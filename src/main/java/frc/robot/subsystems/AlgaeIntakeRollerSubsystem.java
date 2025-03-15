@@ -29,6 +29,12 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         arm_ClosedLoop.setReference(angle, ControlType.kPosition);
     }
 
+//Stand in roll method
+public void simpleRoll(double speed){
+    algaeIntakeMotor.set(speed);
+}
+
+//Elis Method - broke the command scheduler - need to investigate
     public void rollIntake() {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();
@@ -37,6 +43,18 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         } else {
             if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
                 algaeIntakeMotor.set(0.0);
+                isIntakeRunning = false;
+            }
+        }
+    }
+    public void rollOutput() {
+        if (!isIntakeRunning) {
+            timeAtStartIntake = System.currentTimeMillis();
+            isIntakeRunning = true;
+            algaeIntakeMotor.set(0.5);
+        } else {
+            if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
+                algaeIntakeMotor.set(0);
                 isIntakeRunning = false;
             }
         }
@@ -52,6 +70,7 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         }
     }
 
+    //Eli's Version
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
@@ -66,4 +85,11 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         }
         arm_ClosedLoop.setReference(goalArmPosition, ControlType.kPosition);
     }
+
+    //Addisons version of 'Arm Angle'
+
+    public void a_Arm_angle(double angle){
+        
+    }
+
 }

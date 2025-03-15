@@ -46,7 +46,7 @@ coralArmSubsystem.tempCheck();
             elevatorSubsystem.moveTheMotor(0.0);
         }
         if (controller.getRawButton(2)) {
-            coralArmSubsystem.rollIntake();
+            coralArmSubsystem.rollIntake(0.5);
         }
         driveSubsystem.drive(controller.getRawAxis(0), controller.getRawAxis(1), controller.getRawAxis(2), Constants.DriveConstants.kDriveRelativeToField);
 

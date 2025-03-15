@@ -53,13 +53,25 @@ public class RobotContainer {
 
  // The driver's controller
     GenericHID m_FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
-    XboxController m_secondaryController = new XboxController(OIConstants.ksecondControllerport);
+    //XboxController m_secondaryController = new XboxController(OIConstants.ksecondControllerport);
 
     //Button mappings
-    JoystickButton Button_Intake_Procedure = new JoystickButton(m_FlightStick,3);
+    JoystickButton Button_CoralIntake_Procedure = new JoystickButton(m_FlightStick,3);
+    JoystickButton Button_CoralOutput_Procedure = new JoystickButton(m_FlightStick, 4);
+
     JoystickButton Button_Preset_A = new JoystickButton(m_FlightStick,7);
     JoystickButton Button_Preset_B = new JoystickButton(m_FlightStick,9);
     JoystickButton Button_Preset_C = new JoystickButton(m_FlightStick,11);
+
+    JoystickButton Algae_Preset_Intake = new JoystickButton(m_FlightStick, 5);
+    JoystickButton Algae_Preset_Output = new JoystickButton(m_FlightStick,6);
+    JoystickButton Algae_Preset_Off = new JoystickButton(m_FlightStick,12);
+
+
+    JoystickButton Algae_Preset_Up = new JoystickButton(m_FlightStick, 8);
+    JoystickButton Algae_Preset_Down = new JoystickButton(m_FlightStick, 10);
+    JoystickButton Coral_intake_Off = new JoystickButton(m_FlightStick, 2);
+
 
 
   /**
@@ -74,16 +86,18 @@ public class RobotContainer {
  public void configureBindings() {
 
     //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar
+    
+    //Placeholder Value
     int el_position_intake = 1;
     
     int el_position_A = 0;
-    int el_position_B = 20;
-    int el_position_C = 30;
+    int el_position_B = 15;
+    int el_position_C = 18;
 
     int arm_angle_intake = 10;
-    int arm_angle_A = 1;
-    int arm_angle_B = 5;
-    int arm_angle_C = 10;
+    int arm_angle_A = -21;
+    int arm_angle_B = -14;
+    int arm_angle_C = 0;
 
 
     int algae_angle_A = 1;
@@ -95,19 +109,48 @@ public class RobotContainer {
     //through a proper command method, but for now and for testing, this simplified code will have to work
 
 
-    //Mappings for Button A -> Used to intake coral
-    Button_Intake_Procedure.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_intake), m_ElevatorSubsystem));
-    Button_Intake_Procedure.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(algae_angle_A), m_algaeIntake));
+    //Mappings for Button A -> Used to intake corals
+    //Button_CoralIntake_Procedure.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_intake), m_ElevatorSubsystem));
+    Button_CoralIntake_Procedure.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(0.35), m_armMovement));
+    Coral_intake_Off.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(0), m_armMovement));
+
+    Button_CoralOutput_Procedure.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(-0.35), m_armMovement));
+
+
     
+
+    //Algae Commands
+    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake));
+    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.1), m_algaeIntake));
+   
+    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(-.1), m_algaeIntake));
+    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-3), m_algaeIntake));
+
+
+    Algae_Preset_Off.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.0), m_algaeIntake));
+
+    //set Button Controls to Set Algae intake angle -> Currently in testing
+
+    Algae_Preset_Up.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(8), m_algaeIntake));
+    Algae_Preset_Down.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(-8), m_algaeIntake));
+  
+
+
+
+
     //Mappings for Button B -> Used for coral scoring on L1 
-    Button_Preset_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A), m_ElevatorSubsystem));
+
+
+    //Button_Preset_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A), m_ElevatorSubsystem));
     Button_Preset_A.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_A), m_armMovement));
+    Button_Preset_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A), m_ElevatorSubsystem));
+
 
     //Mappings for Button C -> Used for coral scoring on L2 
     Button_Preset_B.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_B), m_ElevatorSubsystem));
     Button_Preset_B.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_B), m_armMovement));
 
-    //Mappings for Button B -> Used for coral scoring on L1 
+    //Mappings for Button B -> Used for coral scoring on L3 
     Button_Preset_C.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_C), m_ElevatorSubsystem));
     Button_Preset_C.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_C), m_armMovement));
    
@@ -118,19 +161,14 @@ public class RobotContainer {
     // Turning is controlled by the X axis of the right stick.
     new RunCommand(
         () -> m_robotDrive.drive(
-            -MathUtil.applyDeadband(m_FlightStick.getRawAxis(0), OIConstants.kDriveDeadband),
             -MathUtil.applyDeadband(m_FlightStick.getRawAxis(1), OIConstants.kDriveDeadband),
+            -MathUtil.applyDeadband(m_FlightStick.getRawAxis(0), OIConstants.kDriveDeadband),
             -MathUtil.applyDeadband(m_FlightStick.getRawAxis(2), OIConstants.kDriveDeadband),
             true),
         m_robotDrive));
 
 
-      m_armMovement.setDefaultCommand(
-
-        new RunCommand(
-          () -> m_armMovement.basicRotation(-MathUtil.applyDeadband(m_FlightStick.getRawAxis(5), OIConstants.kDriveDeadband))));
-
-  }
+ }
 
  
 

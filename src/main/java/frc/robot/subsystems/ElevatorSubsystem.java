@@ -53,6 +53,8 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void basicRaise(double setPoint){
         theMotorClosedLoopController.setReference(setPoint, ControlType.kPosition);
     }
+
+    
     public void moveTheMotor(double speed) {
         double sp = speed;
         if (speed < -0.5) {

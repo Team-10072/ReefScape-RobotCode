@@ -49,6 +49,7 @@ public final class Constants {
 
     public static final int kFrontLeftDrivingCanId = 2;
     public static final int kRearLeftDrivingCanId = 6;
+
     public static final int kFrontRightDrivingCanId = 4;
     public static final int kRearRightDrivingCanId = 8;
 
@@ -111,8 +112,8 @@ public final class Constants {
     public static final int kElevatorMotorCanId = 11;
 
     public static final int kArmRotationCanId = 12;
-    public static final int k_L_IntakeMotorCanId = 14;
-    public static final int k_R_IntakeMotorCanId = 15;
+    //public static final int k_L_IntakeMotorCanId = 14;
+    public static final int k_R_IntakeMotorCanId = 13;
     
     public static final boolean kGyroReversed = false;
 

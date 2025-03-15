@@ -5,10 +5,10 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
 
 
-import javax.lang.model.util.ElementScanner14;
+//import javax.lang.model.util.ElementScanner14;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+//import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 
 
 public class IntakeCommands extends Command{
@@ -56,7 +56,7 @@ public class IntakeCommands extends Command{
     }
 
      public void coral_eject(){
-       m_intakeSystem.rollIntake();
+       m_intakeSystem.rollIntake(0.5);
     }
 
 

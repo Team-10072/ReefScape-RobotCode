@@ -22,24 +22,25 @@ public class CoralArmSubsystem extends SubsystemBase {
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
 
-    //private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
-    // private final SparkClosedLoopController intakeloop = new SparkClosedLoopController(IntakeMotor);
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
-
     private boolean isIntakeRunning = false;
-    // private boolean isArmUp = false;
-    
-private double goalArmPosition = 0.0;
+    private double goalArmPosition = 0.0;
 
     public CoralArmSubsystem() {
         
     }
 
 
-    public int initilize_arm_angle(){
-        return 0;
+    public void coralarm_DefaultCommand(boolean coral_Intake, boolean coral_eject){
+        if (coral_Intake){
+            IntakeMotor.set(0.5);
+        }else if (coral_eject){
+            IntakeMotor.set(-0.5);
+        }else{
+            IntakeMotor.set(0);
+        }
     }
 
 
@@ -48,10 +49,7 @@ private double goalArmPosition = 0.0;
     }
 
 
-    
 
-
-        
     public void basicSetPoints(int requestedPreset) {    
         switch (requestedPreset) {
             case '1':
@@ -68,8 +66,15 @@ private double goalArmPosition = 0.0;
         }
     }
 
-    public void simple_roller(double Speed){
-        IntakeMotor.set(Speed);
+    public void simple_roller(boolean button_Intake, boolean button_Eject){
+        if (button_Intake){
+            IntakeMotor.set(0.5);
+        }else if(button_Eject){
+             IntakeMotor.set(-0.5);
+        }
+        else{
+             IntakeMotor.set(0);
+        }
     }
 
 

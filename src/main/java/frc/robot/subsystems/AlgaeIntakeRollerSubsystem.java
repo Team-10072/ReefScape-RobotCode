@@ -74,6 +74,9 @@ public void simpleRoll(double speed){
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);
     }
+    /**
+     * @deprecated
+     */
     public void changeArmPosition(boolean armShouldGoUp) {
         if (armShouldGoUp == isArmUp) {
             return;

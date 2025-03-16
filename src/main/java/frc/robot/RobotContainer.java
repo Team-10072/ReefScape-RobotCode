@@ -101,7 +101,7 @@ public class RobotContainer {
 
 
     int algae_angle_A = 1;
-    int algae_angle_B = 1;
+    // int algae_angle_B = 1;
 
 
     

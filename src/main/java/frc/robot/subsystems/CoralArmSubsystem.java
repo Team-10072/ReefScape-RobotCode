@@ -26,7 +26,7 @@ public class CoralArmSubsystem extends SubsystemBase {
     // private final SparkClosedLoopController intakeloop = new SparkClosedLoopController(IntakeMotor);
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
-    private double timeAtStartIntake = 0.0; // is there a reason were using the a timer in this instance?
+    private double timeAtStartIntake = 0.0;
 
     private boolean isIntakeRunning = false;
     // private boolean isArmUp = false;

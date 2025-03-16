@@ -58,7 +58,7 @@ public class IntakeCommands extends Command {
   @Override
   public void initialize() {
    m_intakeSystem.initilize_arm_angle();
-   m_AlgaeIntakeRollerSubsystem.initilize_arm_angle();
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.

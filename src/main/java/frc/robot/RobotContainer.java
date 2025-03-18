@@ -121,6 +121,7 @@ public class RobotContainer {
     
 
     //Algae Commands
+    // The problem was that the methods required constant calling, while the RobotContainer called them only once.
     Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake)));
     Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.rollIntake(.1), m_algaeIntake)));
    

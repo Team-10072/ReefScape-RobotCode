@@ -54,7 +54,7 @@ public class RobotContainer {
 
  // The driver's controller
     GenericHID m_FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
-    //XboxController m_secondaryController = new XboxController(OIConstants.ksecondControllerport);
+    GenericHID m_secondaryController = new GenericHID(OIConstants.kSecondControllerPort);
 
     //Button mappings
     JoystickButton Button_CoralIntake_Procedure = new JoystickButton(m_FlightStick,3);
@@ -64,13 +64,13 @@ public class RobotContainer {
     JoystickButton Button_Preset_B = new JoystickButton(m_FlightStick,9);
     JoystickButton Button_Preset_C = new JoystickButton(m_FlightStick,11);
 
-    JoystickButton Algae_Preset_Intake = new JoystickButton(m_FlightStick, 5);
-    JoystickButton Algae_Preset_Output = new JoystickButton(m_FlightStick,6);
-    JoystickButton Algae_Preset_Off = new JoystickButton(m_FlightStick,12);
+    JoystickButton Algae_Preset_Intake = new JoystickButton(m_secondaryController, 5);
+    JoystickButton Algae_Preset_Output = new JoystickButton(m_secondaryController,6);
+    JoystickButton Algae_Preset_Off = new JoystickButton(m_secondaryController,12);
 
 
-    JoystickButton Algae_Preset_Up = new JoystickButton(m_FlightStick, 8);
-    JoystickButton Algae_Preset_Down = new JoystickButton(m_FlightStick, 10);
+    JoystickButton Algae_Preset_Up = new JoystickButton(m_secondaryController, 8);
+    JoystickButton Algae_Preset_Down = new JoystickButton(m_secondaryController, 10);
     JoystickButton Coral_intake_Off = new JoystickButton(m_FlightStick, 2);
 
 
@@ -87,7 +87,7 @@ public class RobotContainer {
  public void configureBindings() {
 
     //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar
-    
+    double modifier = 0.0;
     //Placeholder Value
     // int el_position_intake = 1;
     
@@ -170,6 +170,10 @@ public class RobotContainer {
             true),
         m_robotDrive));
 
+  m_armMovement.setDefaultCommand(
+      new RunCommand(() -> 
+        m_armMovement.basicRotation(arm_angle_C + m_secondaryController.getRawAxis(0)))
+      , m_armMovement);
 
  }
 

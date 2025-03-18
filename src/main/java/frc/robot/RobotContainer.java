@@ -13,10 +13,11 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -88,19 +89,19 @@ public class RobotContainer {
     //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar
     
     //Placeholder Value
-    int el_position_intake = 1;
+    // int el_position_intake = 1;
     
     int el_position_A = 0;
     int el_position_B = 15;
     int el_position_C = 18;
 
-    int arm_angle_intake = 10;
+    // int arm_angle_intake = 10;
     int arm_angle_A = -21;
     int arm_angle_B = -14;
     int arm_angle_C = 0;
 
 
-    int algae_angle_A = 1;
+    // int algae_angle_A = 1;
     // int algae_angle_B = 1;
 
 
@@ -120,11 +121,11 @@ public class RobotContainer {
     
 
     //Algae Commands
-    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake));
-    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.1), m_algaeIntake));
+    Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake)));
+    Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.rollIntake(.1), m_algaeIntake)));
    
-    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(-.1), m_algaeIntake));
-    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-3), m_algaeIntake));
+    Algae_Preset_Output.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.rollOutput(0.1), m_algaeIntake)));
+    Algae_Preset_Output.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.set_angle(-3), m_algaeIntake)));
 
 
     Algae_Preset_Off.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.0), m_algaeIntake));
@@ -134,6 +135,7 @@ public class RobotContainer {
     Algae_Preset_Up.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(8), m_algaeIntake));
     Algae_Preset_Down.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(-8), m_algaeIntake));
   
+    
 
 
 

@@ -33,11 +33,11 @@ public class CoralArmSubsystem extends SubsystemBase {
     
 private double goalArmPosition = 0.0;
 
-    public CoralArmSubsystem() {
-        
-    }
+    public CoralArmSubsystem(){}
 
-
+    /**
+     * @deprecated
+     */
     public int initilize_arm_angle(){
         return 0;
     }

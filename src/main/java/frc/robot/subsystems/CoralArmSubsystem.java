@@ -1,15 +1,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-
-// import org.ejml.dense.row.decomposition.eig.SymmetricQRAlgorithmDecomposition_DDRM;
-
-// import com.revrobotics.AbsoluteEncoder;
-// import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkClosedLoopController;
-import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkBase.ControlType;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -24,7 +17,8 @@ public class CoralArmSubsystem extends SubsystemBase {
 
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
-
+    //private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
+    // private final SparkClosedLoopController intakeloop = new SparkClosedLoopController(IntakeMotor);
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
@@ -41,6 +35,10 @@ public class CoralArmSubsystem extends SubsystemBase {
     }
 
 
+    public void basicRotation(double setPoint, double modifier) {
+        arm_ClosedLoop.setReference(setPoint + modifier, ControlType.kPosition);
+    }
+
     public void basicRotation(double setPoint) {
 
         // double change = Map.map(controller.getRawAxis(3), -1.0, 1.0, -3.0, 3.0);
@@ -49,6 +47,13 @@ public class CoralArmSubsystem extends SubsystemBase {
         // }
         arm_ClosedLoop.setReference(setPoint/* + change*/, ControlType.kPosition);
     }
+
+    public void basicRotation (double setPoint, GenericHID controller) {
+        arm_ClosedLoop.setReference(setPoint + controller.getRawAxis(0), ControlType.kPosition);
+    }
+
+
+    
 
 
 
@@ -92,6 +97,10 @@ public class CoralArmSubsystem extends SubsystemBase {
                 isIntakeRunning = false;
             }
         }
+    }
+
+    public void rollOutput(double speed) {
+        rollIntake(/*speed:*/-speed);
     }
 
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.

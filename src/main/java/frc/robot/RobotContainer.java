@@ -72,7 +72,7 @@ public class RobotContainer {
  public void configureBindings() {
 
     //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar 
-  
+    double modifier = 0.0;
     //Preset elevator positions -> Need to move into the subsystem later
     int el_position_A = 18;
     int el_position_B = 15;

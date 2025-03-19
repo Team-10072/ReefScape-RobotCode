@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import frc.robot.MotorTempTooHigh;
-import frc.robot.Constants.CoralSystemConstants;
-import frc.robot.Constants.OIConstants;
 //import frc.robot.Map;
 
 // import frc.robot.MotorTempTooHigh;

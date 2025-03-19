@@ -31,21 +31,31 @@ public class RobotContainer {
     GenericHID m_FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
     GenericHID m_secondaryController = new GenericHID(OIConstants.kSecondControllerPort);
 
-    //Button mappings
-    JoystickButton Button_CoralIntake_Procedure = new JoystickButton(m_FlightStick,3);
-    JoystickButton Button_CoralOutput_Procedure = new JoystickButton(m_FlightStick, 4);
 
+    //Button mappings
+
+    //Deprecate\/
+    JoystickButton Coral_Trigger = new JoystickButton(m_FlightStick,1);
+    
+
+    //Preset coral arm angle
     JoystickButton Button_Preset_A = new JoystickButton(m_FlightStick,7);
     JoystickButton Button_Preset_B = new JoystickButton(m_FlightStick,9);
     JoystickButton Button_Preset_C = new JoystickButton(m_FlightStick,11);
 
-    JoystickButton Algae_Preset_Intake = new JoystickButton(m_secondaryController, 5);
-    JoystickButton Algae_Preset_Output = new JoystickButton(m_secondaryController,6);
-    JoystickButton Algae_Preset_Off = new JoystickButton(m_secondaryController,12);
+    //Elevator
+    JoystickButton Button_Elevator_A = new JoystickButton(m_FlightStick, 8);
+    JoystickButton Button_Elevator_B = new JoystickButton(m_FlightStick, 10);
+    JoystickButton Button_Elevator_C = new JoystickButton(m_FlightStick,12);
 
 
-    JoystickButton Algae_Preset_Up = new JoystickButton(m_secondaryController, 8);
-    JoystickButton Algae_Preset_Down = new JoystickButton(m_secondaryController, 10);
+    //Algae intake
+    JoystickButton Algae_Preset_Intake = new JoystickButton(m_FlightStick, 5);
+    JoystickButton Algae_Preset_Output = new JoystickButton(m_FlightStick,6);
+    JoystickButton Algae_Preset_Off = new JoystickButton(m_FlightStick,12);
+
+
+    //Deprecate
     JoystickButton Coral_intake_Off = new JoystickButton(m_FlightStick, 2);
 
 
@@ -61,21 +71,18 @@ public class RobotContainer {
 
  public void configureBindings() {
 
-    //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar
-    double modifier = 0.0;
-    //Placeholder Value
-    // int el_position_intake = 1;
-    
-    int el_position_A = 0;
+    //Consider Adding Modifier Value in case the Driver need to tweak the height on the fly - Use the Slider Bar 
+  
+    //Preset elevator positions -> Need to move into the subsystem later
+    int el_position_A = 18;
     int el_position_B = 15;
-    int el_position_C = 18;
+    int el_position_C = 0;
 
-    // int arm_angle_intake = 10;
+    //Preset arm postions
     int arm_angle_A = -21;
     int arm_angle_B = -14;
     int arm_angle_C = 0;
 
-    // int algae_angle_A = 1;
     // int algae_angle_B = 1;
 
 
@@ -83,55 +90,28 @@ public class RobotContainer {
     //these are basic buton mappings for the driver. many of these operations should have some level of logic applied 
     //through a proper command method, but for now and for testing, this simplified code will have to work
 
-
-    //Mappings for Button A -> Used to intake corals
-    //Button_CoralIntake_Procedure.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_intake), m_ElevatorSubsystem));
-    Button_CoralIntake_Procedure.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(0.35), m_armMovement));
-    Coral_intake_Off.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(0), m_armMovement));
-
-    Button_CoralOutput_Procedure.onTrue(new InstantCommand(() -> m_armMovement.rollIntake(-0.35), m_armMovement));
-
-
-    
-
-    //Algae Commands
-    // The problem was that the methods required constant calling, while the RobotContainer called them only once.
-    Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake)));
-    Algae_Preset_Intake.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.rollIntake(.1), m_algaeIntake)));
-   
-    Algae_Preset_Output.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.rollOutput(0.1), m_algaeIntake)));
-    Algae_Preset_Output.onTrue(new RepeatCommand(new InstantCommand(() -> m_algaeIntake.set_angle(-3), m_algaeIntake)));
-
-
-    Algae_Preset_Off.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.0), m_algaeIntake));
-
-    //set Button Controls to Set Algae intake angle -> Currently in testing
-
-    Algae_Preset_Up.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(8), m_algaeIntake));
-    Algae_Preset_Down.onTrue(new InstantCommand(() -> m_algaeIntake.a_Arm_angle(-8), m_algaeIntake));
-  
-    
-
-
-
-
-    //Mappings for Button B -> Used for coral scoring on L1 
-
-
-    //Button_Preset_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A), m_ElevatorSubsystem));
+    //Arm Angle preset Commands temporary for Comp!
     Button_Preset_A.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_A), m_armMovement));
-    Button_Preset_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A), m_ElevatorSubsystem));
-
-
-    //Mappings for Button C -> Used for coral scoring on L2 
-    Button_Preset_B.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_B), m_ElevatorSubsystem));
     Button_Preset_B.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_B), m_armMovement));
-
-    //Mappings for Button B -> Used for coral scoring on L3 
-    Button_Preset_C.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_C), m_ElevatorSubsystem));
     Button_Preset_C.onTrue(new InstantCommand(() -> m_armMovement.basicRotation(arm_angle_C), m_armMovement));
-   
 
+
+    //Elevator preset height Commands
+    Button_Elevator_A.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_A)));
+    Button_Elevator_B.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_B)));
+    Button_Elevator_C.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_C)));
+
+
+
+    m_armMovement.setDefaultCommand(new RunCommand(() -> m_armMovement.simple_roller(m_FlightStick.getRawButton(4), 
+              m_FlightStick.getRawButton(6)),
+            m_armMovement));
+
+            
+    m_algaeIntake.setDefaultCommand(new RunCommand(() -> m_algaeIntake.algae_default_method(m_FlightStick.getRawAxis(3), 
+            m_FlightStick.getRawButton(1), m_FlightStick.getRawButton(2)),
+          m_algaeIntake));
+          
       // Configure default commands
   m_robotDrive.setDefaultCommand(
     // The left stick controls translation of the robot.

@@ -3,6 +3,9 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.*;
 
+//Deprecated--- for now
+
+
 public class IntakeCommands extends Command {
     private final CoralArmSubsystem m_intakeSystem;
     private final ElevatorSubsystem m_ElevatorSubsystem;
@@ -17,7 +20,7 @@ public class IntakeCommands extends Command {
     }
 
     public void coral_intake_up() {
-        m_AlgaeIntakeRollerSubsystem.set_angle(1);
+        //m_AlgaeIntakeRollerSubsystem.set_angle(1);
         m_ElevatorSubsystem.basicRaise(1); 
         m_intakeSystem.basicRotation(1);
     }
@@ -26,7 +29,7 @@ public class IntakeCommands extends Command {
 
        m_ElevatorSubsystem.basicRaise(0); 
        m_intakeSystem.basicRotation(0);
-       m_AlgaeIntakeRollerSubsystem.set_angle(1);
+       //m_AlgaeIntakeRollerSubsystem.set_angle(1);
       }
 
       public void coral_position_Presets(int arm_angle, int elevator_height){
@@ -89,7 +92,7 @@ public class IntakeCommands extends Command {
           m_AlgaeIntakeRollerSubsystem.set_angle(0);
       }
       public void algae_eject(){
-          m_AlgaeIntakeRollerSubsystem.rollIntake(0.5);
+         // m_AlgaeIntakeRollerSubsystem.rollIntake();
       }
 
 

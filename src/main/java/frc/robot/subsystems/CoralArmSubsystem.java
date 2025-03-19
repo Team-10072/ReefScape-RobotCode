@@ -7,6 +7,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import frc.robot.MotorTempTooHigh;
+import frc.robot.Constants.CoralSystemConstants;
+import frc.robot.Constants.OIConstants;
+//import frc.robot.Map;
+
+// import frc.robot.MotorTempTooHigh;
 
 public class CoralArmSubsystem extends SubsystemBase {
 
@@ -15,8 +20,8 @@ public class CoralArmSubsystem extends SubsystemBase {
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
-
     private boolean isIntakeRunning = false;
+    // private boolean isArmUp = false;
     
 private double goalArmPosition = 0.0;
 
@@ -35,7 +40,12 @@ private double goalArmPosition = 0.0;
     }
 
     public void basicRotation(double setPoint) {
-        arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
+
+        // double change = Map.map(controller.getRawAxis(3), -1.0, 1.0, -3.0, 3.0);
+        // if (setPoint + change > 16) {
+        //     arm_ClosedLoop.setReference(16, ControlType.kPosition);
+        // }
+        arm_ClosedLoop.setReference(setPoint/* + change*/, ControlType.kPosition);
     }
 
     public void basicRotation (double setPoint, GenericHID controller) {
@@ -46,7 +56,7 @@ private double goalArmPosition = 0.0;
     
 
 
-        
+
     public void basicSetPoints(int requestedPreset) {    
         switch (requestedPreset) {
             case '1':
@@ -63,8 +73,15 @@ private double goalArmPosition = 0.0;
         }
     }
 
-    public void simple_roller(double Speed){
-        IntakeMotor.set(Speed);
+    public void simple_roller(boolean button_Intake, boolean button_Eject){
+        if (button_Intake){
+            IntakeMotor.set(0.5);
+        }else if(button_Eject){
+             IntakeMotor.set(/*speed:*/-0.5);
+        }
+        else{
+             IntakeMotor.set(0);
+        }
     }
 
 

@@ -172,8 +172,8 @@ public class RobotContainer {
 
   m_armMovement.setDefaultCommand(
       new RunCommand(() -> 
-        m_armMovement.basicRotation(arm_angle_C + m_secondaryController.getRawAxis(0)))
-      , m_armMovement);
+        m_armMovement.basicRotation(arm_angle_C + m_secondaryController.getRawAxis(0))
+      , m_armMovement));
 
  }
 

@@ -25,8 +25,6 @@ public class CoralArmSubsystem extends SubsystemBase {
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
 
-    private final GenericHID FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
-
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;

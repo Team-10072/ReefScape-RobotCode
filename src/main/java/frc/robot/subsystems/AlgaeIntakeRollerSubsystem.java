@@ -16,7 +16,6 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
     private final SparkMax algaeIntakeMotor = new SparkMax(AlgaeSystemConstants.kAlgaeIntakeMotorCanId, MotorType.kBrushless);
     private final SparkMax algaeArmMotor = new SparkMax(AlgaeSystemConstants.kAlgaeArmMotorCanId, MotorType.kBrushless);
     
-    // private final RelativeEncoder algaeArmEncoder = algaeArmMotor.getAlternateEncoder();
     private final SparkClosedLoopController arm_ClosedLoop = algaeArmMotor.getClosedLoopController();
 
     private double timeAtStartIntake = 0.0;
@@ -25,29 +24,38 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
 
     private double goalArmPosition = 0.0;
     
-    public void set_angle(double angle, boolean intake, boolean eject){
-        double target = (angle + 1)*-2;
-        double speed = 0.5;
 
-        arm_ClosedLoop.setReference(target, ControlType.kPosition);
-
-        if (intake){
-            simpleRoll(speed);
-        }else if (eject){
-            simpleRoll(speed);
-        }else {
-            simpleRoll(0);
-        }
-        
+    public void algae_default_method (double angle, boolean intake_button, boolean output_button){
+        set_angle(angle);
+        algae_Rollers(0.5, intake_button, output_button);
     }
 
 
-    public 
+
+    public void set_angle(double angle){
+        double target = (angle + 1)*-2;
+        arm_ClosedLoop.setReference(target, ControlType.kPosition);
+    }
+
 
 //Stand in roll method
-public void simpleRoll(double speed){
+public void algae_Rollers(double speed, boolean intake, boolean output){
+
+    if (intake){
+        algaeIntakeMotor.set(speed);
+    }else if (output){
+        algaeIntakeMotor.set(speed);
+    }else {
+        algaeIntakeMotor.set(speed);
+    }
+
     algaeIntakeMotor.set(speed);
 }
+
+
+
+
+
 
 //Elis Method - broke the command scheduler - need to investigate
     public void rollIntake(double speed) {
@@ -85,6 +93,8 @@ public void simpleRoll(double speed){
         }
     }
 
+
+    
     //Eli's Version
     public void changeArmPosition() {
         changeArmPosition(!isArmUp);

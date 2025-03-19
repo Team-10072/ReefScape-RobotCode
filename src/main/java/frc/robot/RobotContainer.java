@@ -132,7 +132,8 @@ public class RobotContainer {
               m_FlightStick.getRawButton(6)),
             m_armMovement));
 
-    m_algaeIntake.setDefaultCommand(new RunCommand(() -> m_algaeIntake.set_angle(m_FlightStick.getRawAxis(3), 
+            
+    m_algaeIntake.setDefaultCommand(new RunCommand(() -> m_algaeIntake.algae_default_method(m_FlightStick.getRawAxis(3), 
             m_FlightStick.getRawButton(1), m_FlightStick.getRawButton(2)),
           m_algaeIntake));
           

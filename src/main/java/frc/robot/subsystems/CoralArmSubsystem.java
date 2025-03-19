@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
@@ -43,8 +44,16 @@ private double goalArmPosition = 0.0;
     }
 
 
+    public void basicRotation(double setPoint, double modifier) {
+        arm_ClosedLoop.setReference(setPoint + modifier, ControlType.kPosition);
+    }
+
     public void basicRotation(double setPoint) {
         arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
+    }
+
+    public void basicRotation (double setPoint, GenericHID controller) {
+        arm_ClosedLoop.setReference(setPoint + controller.getRawAxis(0), ControlType.kPosition);
     }
 
 
@@ -85,6 +94,10 @@ private double goalArmPosition = 0.0;
                 isIntakeRunning = false;
             }
         }
+    }
+
+    public void rollOutput(double speed) {
+        rollIntake(/*speed:*/-speed);
     }
 
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.

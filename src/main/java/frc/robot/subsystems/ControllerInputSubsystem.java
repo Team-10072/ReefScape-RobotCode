@@ -33,7 +33,7 @@ coralArmSubsystem.tempCheck();
             }
         }
         if (controller.getRawButton(0)) {
-            algaeIntakeRollerSubsystem.rollIntake();
+            algaeIntakeRollerSubsystem.rollIntake(0.5);
         }
         if (controller.getRawButton(1)) {
             // algaeIntakeRollerSubsystem.changeArmPosition();

@@ -41,17 +41,20 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
         
     }
 
+
+    public 
+
 //Stand in roll method
 public void simpleRoll(double speed){
     algaeIntakeMotor.set(speed);
 }
 
 //Elis Method - broke the command scheduler - need to investigate
-    public void rollIntake() {
+    public void rollIntake(double speed) {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();
             isIntakeRunning = true;
-            algaeIntakeMotor.set(0.5);
+            algaeIntakeMotor.set(speed);
         } else {
             if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
                 algaeIntakeMotor.set(0.0);
@@ -59,11 +62,11 @@ public void simpleRoll(double speed){
             }
         }
     }
-    public void rollOutput() {
+    public void rollOutput(double speed) {
         if (!isIntakeRunning) {
             timeAtStartIntake = System.currentTimeMillis();
             isIntakeRunning = true;
-            algaeIntakeMotor.set(0.5);
+            algaeIntakeMotor.set(/*speed:*/-speed);
         } else {
             if (System.currentTimeMillis() - timeAtStartIntake > 2000) {
                 algaeIntakeMotor.set(0);

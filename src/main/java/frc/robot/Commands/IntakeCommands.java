@@ -10,6 +10,9 @@ import frc.robot.subsystems.CoralArmSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 
 
+//Deprecated--- for now
+
+
 public class IntakeCommands extends Command {
     private final CoralArmSubsystem m_intakeSystem;
     private final ElevatorSubsystem m_ElevatorSubsystem;
@@ -57,6 +60,7 @@ public class IntakeCommands extends Command {
 // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  //  m_intakeSystem.initilize_arm_angle();
    
   }
 
@@ -78,5 +82,25 @@ public class IntakeCommands extends Command {
   public boolean isFinished() {
     return false;
   }
+
+
+
+// This command will intake algae. It will handle each of the small changes that need to be made before, during and after the intake process
+      public void algae_intake_up() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(1);
+      }
+      public void algae_intake_close() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(0);
+      }
+      public void algae_position_presets(int arm_angle) {
+          m_AlgaeIntakeRollerSubsystem.set_angle(arm_angle);
+      }
+      public void algae_restState() {
+          m_AlgaeIntakeRollerSubsystem.set_angle(0);
+      }
+      public void algae_eject(){
+          m_AlgaeIntakeRollerSubsystem.rollIntake();
+      }
+
 
 }

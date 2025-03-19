@@ -33,20 +33,15 @@ public class CoralArmSubsystem extends SubsystemBase {
     private boolean isIntakeRunning = false;
     private double goalArmPosition = 0.0;
 
-    public CoralArmSubsystem() {
-        
+    public CoralArmSubsystem(){}
+
+    /**
+     * @deprecated
+     */
+    public int initilize_arm_angle(){
+        return 0;
     }
 
-
-    public void coralarm_DefaultCommand(boolean coral_Intake, boolean coral_eject){
-        if (coral_Intake) {
-            IntakeMotor.set(0.5);
-        } else if (coral_eject){
-            IntakeMotor.set(/*speed:*/-0.5);
-        } else {
-            IntakeMotor.set(0);
-        }
-    }
 
     public void basicRotation(double setPoint) {
 

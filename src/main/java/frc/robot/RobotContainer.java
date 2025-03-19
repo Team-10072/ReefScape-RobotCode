@@ -13,9 +13,10 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.XboxController;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-//import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 //import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
@@ -49,25 +50,33 @@ public class RobotContainer {
 
  // The driver's controller
     GenericHID m_FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
-    //XboxController m_secondaryController = new XboxController(OIConstants.ksecondControllerport);
+    GenericHID m_secondaryController = new GenericHID(OIConstants.kSecondControllerPort);
+
 
     //Button mappings
+
+    //Deprecate\/
     JoystickButton Coral_Trigger = new JoystickButton(m_FlightStick,1);
     
 
+    //Preset coral arm angle
     JoystickButton Button_Preset_A = new JoystickButton(m_FlightStick,7);
     JoystickButton Button_Preset_B = new JoystickButton(m_FlightStick,9);
     JoystickButton Button_Preset_C = new JoystickButton(m_FlightStick,11);
 
-    JoystickButton Algae_Preset_Intake = new JoystickButton(m_FlightStick, 5);
-    JoystickButton Algae_Preset_Output = new JoystickButton(m_FlightStick,6);
-
-
+    //Elevator
     JoystickButton Button_Elevator_A = new JoystickButton(m_FlightStick, 8);
     JoystickButton Button_Elevator_B = new JoystickButton(m_FlightStick, 10);
     JoystickButton Button_Elevator_C = new JoystickButton(m_FlightStick,12);
 
 
+    //Algae intake
+    JoystickButton Algae_Preset_Intake = new JoystickButton(m_FlightStick, 5);
+    JoystickButton Algae_Preset_Output = new JoystickButton(m_FlightStick,6);
+    JoystickButton Algae_Preset_Off = new JoystickButton(m_FlightStick,12);
+
+
+    //Deprecate
     JoystickButton Coral_intake_Off = new JoystickButton(m_FlightStick, 2);
 
 
@@ -90,10 +99,17 @@ public class RobotContainer {
     int el_position_B = 15;
     int el_position_C = 0;
 
-    //preset Values for the Arm Angle -> Need to move into the Subsystem later
+    //Preset arm postions
     int arm_angle_A = -21;
     int arm_angle_B = -14;
     int arm_angle_C = 0;
+
+    //Preset algae position
+    int algae_angle_A = 1;
+    int algae_angle_B = 5;
+
+    // int algae_angle_B = 1;
+
 
     
     //these are basic buton mappings for the driver. many of these operations should have some level of logic applied 
@@ -110,16 +126,6 @@ public class RobotContainer {
     Button_Elevator_B.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_B)));
     Button_Elevator_C.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_C)));
 
-    // Coral_Trigger.onTrue(new RepeatCommand(
-    //       new InstantCommand(() -> 
-    //         m_armMovement.simple_roller(
-    //           m_FlightStick.getRawButton(4), 
-    //           m_FlightStick.getRawButton(6)),
-    //         m_armMovement)));
-    // .onTrue(new InstantCommand(() -> m_armMovement.simple_roller(
-    //                       m_FlightStick.getRawButton(4),  
-    //                       m_FlightStick.getRawButton(6)), 
-    //                       m_armMovement));
 
 
     m_armMovement.setDefaultCommand(new RunCommand(() -> m_armMovement.simple_roller(m_FlightStick.getRawButton(4), 
@@ -142,6 +148,10 @@ public class RobotContainer {
             true),
         m_robotDrive));
 
+  m_armMovement.setDefaultCommand(
+      new RunCommand(() -> 
+        m_armMovement.basicRotation(arm_angle_C + m_secondaryController.getRawAxis(0)))
+      , m_armMovement);
 
  }
 

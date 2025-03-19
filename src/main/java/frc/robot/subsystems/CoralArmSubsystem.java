@@ -10,10 +10,13 @@ import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.MotorTempTooHigh;
 import frc.robot.Constants.CoralSystemConstants;
+import frc.robot.Constants.OIConstants;
+//import frc.robot.Map;
 
 // import frc.robot.MotorTempTooHigh;
 
@@ -21,6 +24,8 @@ public class CoralArmSubsystem extends SubsystemBase {
 
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
+
+    private final GenericHID FlightStick = new GenericHID(OIConstants.kDriverControllerPort);
 
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
@@ -34,18 +39,22 @@ public class CoralArmSubsystem extends SubsystemBase {
 
 
     public void coralarm_DefaultCommand(boolean coral_Intake, boolean coral_eject){
-        if (coral_Intake){
+        if (coral_Intake) {
             IntakeMotor.set(0.5);
-        }else if (coral_eject){
-            IntakeMotor.set(-0.5);
-        }else{
+        } else if (coral_eject){
+            IntakeMotor.set(/*speed:*/-0.5);
+        } else {
             IntakeMotor.set(0);
         }
     }
 
-
     public void basicRotation(double setPoint) {
-        arm_ClosedLoop.setReference(setPoint, ControlType.kPosition);
+
+        // double change = Map.map(controller.getRawAxis(3), -1.0, 1.0, -3.0, 3.0);
+        // if (setPoint + change > 16) {
+        //     arm_ClosedLoop.setReference(16, ControlType.kPosition);
+        // }
+        arm_ClosedLoop.setReference(setPoint/* + change*/, ControlType.kPosition);
     }
 
 
@@ -70,7 +79,7 @@ public class CoralArmSubsystem extends SubsystemBase {
         if (button_Intake){
             IntakeMotor.set(0.5);
         }else if(button_Eject){
-             IntakeMotor.set(-0.5);
+             IntakeMotor.set(/*speed:*/-0.5);
         }
         else{
              IntakeMotor.set(0);

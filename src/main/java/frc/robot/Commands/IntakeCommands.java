@@ -24,7 +24,7 @@ public class IntakeCommands extends Command {
     }
 
     public void coral_intake_up() {
-        m_AlgaeIntakeRollerSubsystem.set_angle(1);
+        //m_AlgaeIntakeRollerSubsystem.set_angle(1);
         m_ElevatorSubsystem.basicRaise(1); 
         m_intakeSystem.basicRotation(1);
     }
@@ -33,7 +33,7 @@ public class IntakeCommands extends Command {
 
        m_ElevatorSubsystem.basicRaise(0); 
        m_intakeSystem.basicRotation(0);
-       m_AlgaeIntakeRollerSubsystem.set_angle(1);
+       //m_AlgaeIntakeRollerSubsystem.set_angle(1);
       }
 
       public void coral_position_Presets(int arm_angle, int elevator_height){
@@ -78,25 +78,5 @@ public class IntakeCommands extends Command {
   public boolean isFinished() {
     return false;
   }
-
-
-
-// This command will intake algae. It will handle each of the small changes that need to be made before, during and after the intake process
-      public void algae_intake_up() {
-          m_AlgaeIntakeRollerSubsystem.set_angle(1);
-      }
-      public void algae_intake_close() {
-          m_AlgaeIntakeRollerSubsystem.set_angle(0);
-      }
-      public void algae_position_presets(int arm_angle) {
-          m_AlgaeIntakeRollerSubsystem.set_angle(arm_angle);
-      }
-      public void algae_restState() {
-          m_AlgaeIntakeRollerSubsystem.set_angle(0);
-      }
-      public void algae_eject(){
-          m_AlgaeIntakeRollerSubsystem.rollIntake();
-      }
-
 
 }

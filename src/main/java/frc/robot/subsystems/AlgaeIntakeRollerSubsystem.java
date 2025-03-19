@@ -25,8 +25,20 @@ public class AlgaeIntakeRollerSubsystem extends SubsystemBase {
 
     private double goalArmPosition = 0.0;
     
-    public void set_angle(int angle){
-        arm_ClosedLoop.setReference(angle, ControlType.kPosition);
+    public void set_angle(double angle, boolean intake, boolean eject){
+        double target = (angle + 1)*-2;
+        double speed = 0.5;
+
+        arm_ClosedLoop.setReference(target, ControlType.kPosition);
+
+        if (intake){
+            simpleRoll(speed);
+        }else if (eject){
+            simpleRoll(speed);
+        }else {
+            simpleRoll(0);
+        }
+        
     }
 
 //Stand in roll method

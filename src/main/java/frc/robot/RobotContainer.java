@@ -13,23 +13,19 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+//import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 //import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 // import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.Trigger;
 //import frc.robot.Commands.IntakeCommands;
-
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-
 import frc.robot.subsystems.AlgaeIntakeRollerSubsystem;
 import frc.robot.subsystems.CoralArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -114,20 +110,26 @@ public class RobotContainer {
     Button_Elevator_B.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_B)));
     Button_Elevator_C.onTrue(new InstantCommand(() -> m_ElevatorSubsystem.basicRaise(el_position_C)));
 
-
-    //Algae Commands
-    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-17), m_algaeIntake));
-    Algae_Preset_Intake.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(.1), m_algaeIntake));
-   
-    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.simpleRoll(-.1), m_algaeIntake));
-    Algae_Preset_Output.onTrue(new InstantCommand(() -> m_algaeIntake.set_angle(-3), m_algaeIntake));
-
-    Coral_Trigger.whileTrue(new InstantCommand(() -> m_armMovement.simple_roller(
-                          m_FlightStick.getRawButton(4),  
-                          m_FlightStick.getRawButton(6)), 
-                          m_armMovement));
+    // Coral_Trigger.onTrue(new RepeatCommand(
+    //       new InstantCommand(() -> 
+    //         m_armMovement.simple_roller(
+    //           m_FlightStick.getRawButton(4), 
+    //           m_FlightStick.getRawButton(6)),
+    //         m_armMovement)));
+    // .onTrue(new InstantCommand(() -> m_armMovement.simple_roller(
+    //                       m_FlightStick.getRawButton(4),  
+    //                       m_FlightStick.getRawButton(6)), 
+    //                       m_armMovement));
 
 
+    m_armMovement.setDefaultCommand(new RunCommand(() -> m_armMovement.simple_roller(m_FlightStick.getRawButton(4), 
+              m_FlightStick.getRawButton(6)),
+            m_armMovement));
+
+    m_algaeIntake.setDefaultCommand(new RunCommand(() -> m_algaeIntake.set_angle(m_FlightStick.getRawAxis(3), 
+            m_FlightStick.getRawButton(1), m_FlightStick.getRawButton(2)),
+          m_algaeIntake));
+          
       // Configure default commands
   m_robotDrive.setDefaultCommand(
     // The left stick controls translation of the robot.

@@ -5,24 +5,18 @@ import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkBase.ControlType;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.*;
 import frc.robot.MotorTempTooHigh;
-import frc.robot.Constants.CoralSystemConstants;
-
-// import frc.robot.MotorTempTooHigh;
 
 public class CoralArmSubsystem extends SubsystemBase {
 
     private final SparkMax ArmMotor = new SparkMax(CoralSystemConstants.kArmRotationCanId, MotorType.kBrushless);
     private final SparkClosedLoopController arm_ClosedLoop = ArmMotor.getClosedLoopController();
-    //private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_L_IntakeMotorCanId, MotorType.kBrushless);
-    // private final SparkClosedLoopController intakeloop = new SparkClosedLoopController(IntakeMotor);
     private final SparkMax IntakeMotor = new SparkMax(CoralSystemConstants.k_R_IntakeMotorCanId, MotorType.kBrushless);
 
     private double timeAtStartIntake = 0.0;
 
     private boolean isIntakeRunning = false;
-    // private boolean isArmUp = false;
     
 private double goalArmPosition = 0.0;
 
@@ -56,13 +50,13 @@ private double goalArmPosition = 0.0;
     public void basicSetPoints(int requestedPreset) {    
         switch (requestedPreset) {
             case '1':
-                goalArmPosition = Constants.LevelConstantsCoral.kLevel1RotationCoral;
+                goalArmPosition = LevelConstantsCoral.kLevel1RotationCoral;
                 break;
             case '2':
-                goalArmPosition = Constants.LevelConstantsCoral.kLevel2RotationCoral;
+                goalArmPosition = LevelConstantsCoral.kLevel2RotationCoral;
                 break;
             case '3':
-                goalArmPosition = Constants.LevelConstantsCoral.kLevel3RotationCoral;
+                goalArmPosition = LevelConstantsCoral.kLevel3RotationCoral;
                 break;    
             default:
                 break;
@@ -95,11 +89,11 @@ private double goalArmPosition = 0.0;
     //Great Fore thought here!! I might would change the name to something like tempCheck or thermalSafety since check on motors can mean lots of things.
     public void tempCheck() {
     
-        if (IntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+        if (IntakeMotor.getMotorTemperature() > NeoMotorConstants.kAcceptableMotorTemp) {
             IntakeMotor.set(0.0);
             throw new MotorTempTooHigh("The Coral Intake Motor 2 is too hot!");
         }
-        if (ArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+        if (ArmMotor.getMotorTemperature() > NeoMotorConstants.kAcceptableMotorTemp) {
             ArmMotor.set(0.0);
             throw new MotorTempTooHigh("The Coral Arm Motor is too hot!");
         }

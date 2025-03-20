@@ -1,11 +1,7 @@
 package frc.robot.subsystems;
 
-import frc.robot.Constants;
-import frc.robot.Constants.AlgaeSystemConstants;
-import frc.robot.Constants.CoralSystemConstants;
-
-import com.revrobotics.spark.SparkClosedLoopController;
-import com.revrobotics.spark.SparkMax;
+import frc.robot.Constants.*;
+import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -83,11 +79,11 @@ public void algae_Rollers(double speed, boolean intake, boolean output){
         }
     }
     public void checkOnMotors() {
-        if (algaeIntakeMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+        if (algaeIntakeMotor.getMotorTemperature() > NeoMotorConstants.kAcceptableMotorTemp) {
             algaeIntakeMotor.set(0.0);
             throw new MotorTempTooHigh("The Algae Roller Intake Motor is too hot!");
         }
-        if (algaeArmMotor.getMotorTemperature() > Constants.NeoMotorConstants.kAcceptableMotorTemp) {
+        if (algaeArmMotor.getMotorTemperature() > NeoMotorConstants.kAcceptableMotorTemp) {
             algaeArmMotor.set(0.0);
             throw new MotorTempTooHigh("The Algae Roller Arm Motor is too hot!");
         }
